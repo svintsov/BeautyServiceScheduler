@@ -19,4 +19,27 @@
     <location>/WEB-INF/error.jsp</location>
   </error-page>
 
+  <!--Encoding filter UTF-8 for all requests-->
+  <filter>
+    <filter-name>EncodingRequestFilter</filter-name>
+    <filter-class>filter.EncodingRequestFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>EncodingRequestFilter</filter-name>
+    <url-pattern>/api/*</url-pattern>
+  </filter-mapping>
+
+
+  <!--Encoding filter UTF-8 for all responses-->
+  <filter>
+    <filter-name>EncodingResponseFilter</filter-name>
+    <filter-class>filter.EncodingResponseFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>EncodingResponseFilter</filter-name>
+    <url-pattern>/api/*</url-pattern>
+  </filter-mapping>
+
 </web-app>

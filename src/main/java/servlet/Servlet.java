@@ -25,9 +25,9 @@ public class Servlet extends HttpServlet {
   public void doGet(HttpServletRequest request,
       HttpServletResponse response)
       throws IOException, ServletException {
-    response.setContentType("text/html");
-    response.setCharacterEncoding("UTF-8");
-    request.setCharacterEncoding("UTF-8");
+    //response.setContentType("text/html");
+    //response.setCharacterEncoding("UTF-8");
+    //request.setCharacterEncoding("UTF-8");
     String path = request.getRequestURI();
     path = path.replaceAll(".*/api/", "");
     Command command = commands.getOrDefault(path, (r) -> "/index.jsp)");
@@ -38,8 +38,8 @@ public class Servlet extends HttpServlet {
 
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
-    response.setContentType("text/html");
-    response.setCharacterEncoding("UTF-8");
+    //response.setContentType("text/html");
+    //response.setCharacterEncoding("UTF-8");
 
     /*List<Student> students = studentService.getAllStudents();
     request.setAttribute("students" , students);
