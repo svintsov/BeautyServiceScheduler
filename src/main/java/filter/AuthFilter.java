@@ -2,9 +2,10 @@ package filter;
 
 import static java.util.Objects.nonNull;
 
+import dao.UserDao;
 import entity.Role;
-import entity.User;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicReference;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -34,8 +35,8 @@ public class AuthFilter implements Filter {
     final String login = req.getParameter("login");
     final String password = req.getParameter("password");
 
-    @SuppressWarnings("unchecked")
-    final AtomicReference<UserDAO> dao = (AtomicReference<UserDAO>) req.getServletContext().getAttribute("dao");
+    @SuppressWarnings("unchecked") final AtomicReference<UserDao> dao = (AtomicReference<UserDao>) req
+        .getServletContext().getAttribute("dao");
 
     final HttpSession session = req.getSession();
 
@@ -66,27 +67,28 @@ public class AuthFilter implements Filter {
   }
 
   /**
-   * Move user to menu.
-   * If access 'admin' move to admin menu.
-   * If access 'user' move to user menu.
+   * Move user to menu. If access 'admin' move to admin menu. If access 'user' move to user menu.
    */
   private void moveToMenu(final HttpServletRequest req,
       final HttpServletResponse res,
       final Role role)
       throws ServletException, IOException {
 
-
     if (role.equals(Role.ADMINISTRATOR)) {
 
-      req.getRequestDispatcher("/WEB-INF/admin_menu.jsp").forward(req, res);
+      req.getRequestDispatcher("/admin_menu.jsp").forward(req, res);
 
     } else if (role.equals(Role.USER)) {
 
-      req.getRequestDispatcher("/WEB-INF/user_menu.jsp").forward(req, res);
+      req.getRequestDispatcher("/user-menu.jsp").forward(req, res);
+
+    } else if (role.equals(Role.MASTER)) {
+
+      req.getRequestDispatcher("/master-menu.jsp").forward(req, res);
 
     } else {
 
-      req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, res);
+      req.getRequestDispatcher("/login.jsp").forward(req, res);
     }
   }
 

@@ -13,6 +13,6 @@ public class LogoutCommand implements Command {
     session.removeAttribute("login");
     session.removeAttribute("role");
 
-    return "index.jsp";
+    return "/index.jsp";
   }
 }
