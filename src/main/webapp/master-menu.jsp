@@ -12,6 +12,6 @@
 </head>
 <body>
     <p>Hello,master</p>
-    <a href="/logout">Logout</a>
+    <a href="${pageContext.request.contextPath}/api/logout">Logout</a>
 </body>
 </html>

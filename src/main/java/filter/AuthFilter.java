@@ -76,19 +76,19 @@ public class AuthFilter implements Filter {
 
     if (role.equals(Role.ADMINISTRATOR)) {
 
-      req.getRequestDispatcher("/WEB-INF/admin_menu.jsp").forward(req, res);
+      req.getRequestDispatcher("/admin_menu.jsp").forward(req, res);
 
     } else if (role.equals(Role.USER)) {
 
-      req.getRequestDispatcher("/WEB-INF/user_menu.jsp").forward(req, res);
+      req.getRequestDispatcher("/user-menu.jsp").forward(req, res);
 
     } else if (role.equals(Role.MASTER)) {
 
-      req.getRequestDispatcher("/WEB-INF/user_menu.jsp").forward(req, res);
+      req.getRequestDispatcher("/master-menu.jsp").forward(req, res);
 
     } else {
 
-      req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, res);
+      req.getRequestDispatcher("/login.jsp").forward(req, res);
     }
   }
 
