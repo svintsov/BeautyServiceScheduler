@@ -1,6 +1,8 @@
 package servlet;
 
-import entity.User;
+import command.Command;
+import command.GoToLoginPageCommand;
+import command.GoToRegistrationPageCommand;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletContext;
@@ -11,7 +13,7 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class ContextListener implements ServletContextListener {
 
-  private Map<Integer, User> users;
+  private Map<String, Command> commands;
 
   /**
    * just testing servlet context listener with some data
@@ -23,15 +25,18 @@ public class ContextListener implements ServletContextListener {
     final ServletContext servletContext =
         servletContextEvent.getServletContext();
 
-    users = new ConcurrentHashMap<>();
+    commands = new ConcurrentHashMap<>();
 
-    servletContext.setAttribute("users", users);
+    commands.put("login", new GoToLoginPageCommand());
+    commands.put("registration",new GoToRegistrationPageCommand());
+
+    servletContext.setAttribute("commands", commands);
 
   }
 
   @Override
   public void contextDestroyed(ServletContextEvent sce) {
     //Close recourse.
-    users = null;
+    commands = null;
   }
 }

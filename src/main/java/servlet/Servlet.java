@@ -1,11 +1,9 @@
 package servlet;
 
 import command.Command;
-import command.GoToLoginPageCommand;
-import command.GoToRegistrationPageCommand;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,17 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Servlet extends HttpServlet {
 
-  private Map<String, Command> commands = new HashMap<>();
+  private Map<String, Command> commands;
 
   public void init() {
-    /*commands.put("students",
-        new StudentListCommand(new StudentService()));
-    commands.put("add-student" , new AddStudent());
-    commands.put("teacher-login",
-        new LoginTeacherCommand(new TeacherService()));
-    commands.put("exception" , new ExceptionCommand());*/
-    commands.put("login", new GoToLoginPageCommand());
-    commands.put("registration",new GoToRegistrationPageCommand());
+    final Object commands = getServletContext().getAttribute("commands");
+
+    if (commands == null || !(commands instanceof ConcurrentHashMap)) {
+
+      throw new IllegalStateException("Commands not found!");
+    } else {
+
+      this.commands = (ConcurrentHashMap<String, Command>) commands;
+    }
+
   }
 
   public void doGet(HttpServletRequest request,
