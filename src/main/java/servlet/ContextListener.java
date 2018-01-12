@@ -1,17 +1,9 @@
 package servlet;
 
 import command.Command;
-import command.GoToLoginPageCommand;
-import command.GoToRegistrationPageCommand;
-import command.LogoutCommand;
-import command.RegistrateUserCommand;
 import dao.UserDao;
-import entity.Role;
-import entity.User;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -30,7 +22,7 @@ public class ContextListener implements ServletContextListener {
   @Override
   public void contextInitialized(ServletContextEvent servletContextEvent) {
 
-    final ServletContext servletContext =
+    /*final ServletContext servletContext =
         servletContextEvent.getServletContext();
 
     commandsOfGetMethods = new ConcurrentHashMap<>();
@@ -49,14 +41,15 @@ public class ContextListener implements ServletContextListener {
     servletContext.setAttribute("commandsOfGetMethods", commandsOfGetMethods);
     servletContext.setAttribute("commandsOfPostMethods", commandsOfPostMethods);
     servletContext.setAttribute("dao",dao);
-
+    */
   }
 
   @Override
   public void contextDestroyed(ServletContextEvent sce) {
     //Close recourse.
+    /*
     commandsOfGetMethods = null;
     commandsOfPostMethods=null;
-    dao=null;
+    dao=null;*/
   }
 }
