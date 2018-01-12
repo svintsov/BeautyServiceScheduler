@@ -15,7 +15,13 @@ public enum CommandEnum {
     {
       this.command = new RegistrationFormCommand();
     }
-  };
+  },
+  SIGN_UP{
+    {
+      this.command = new SignUpCommand();
+    }
+  }
+  ;
   Command command;
 
   public Command getCurrentCommand() {
