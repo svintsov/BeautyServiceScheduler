@@ -1,5 +1,5 @@
 package entity;
 
 public enum Role {
-  ADMINISTRATOR,CLIENT,MASTER
+  ADMINISTRATOR,USER,MASTER,UNKNOWN
 }
