@@ -22,5 +22,7 @@
         <br/>
         <input type="submit" value="Log in"/>
     </form><hr/>
+
+    <a href="controller?command=registrationForm">Sign up</a>
 </body>
 </html>
