@@ -1,11 +1,18 @@
 package service;
 
+import dao.UserDao;
+import entity.Role;
+import java.util.concurrent.atomic.AtomicReference;
+
 public class LoginService {
 
-  private final static String ADMIN_LOGIN = "admin";
-  private final static String ADMIN_PASS = "1";
 
-  public static boolean checkLogin(String enterLogin, String enterPass) {
-    return ADMIN_LOGIN.equals(enterLogin) && ADMIN_PASS.equals(enterPass);
+  public static Role getRole(String enterLogin, String enterPass, AtomicReference<UserDao> dao) {
+    return dao.get().getRoleByLoginPassword(enterLogin, enterPass);
   }
+
+  public static boolean checkLogin(String enterLogin, String enterPass, AtomicReference<UserDao> dao){
+    return dao.get().userIsExist(enterLogin,enterPass);
+  }
+
 }
