@@ -1,10 +1,8 @@
 package servlet;
 
-import command.Command;
 import dao.UserDao;
 import entity.Role;
 import entity.User;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -14,8 +12,6 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class ContextListener implements ServletContextListener {
 
-  private Map<String, Command> commandsOfGetMethods;
-  private Map<String, Command> commandsOfPostMethods;
   private AtomicReference<UserDao> dao;
 
   /**
