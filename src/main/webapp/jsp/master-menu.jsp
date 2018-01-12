@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-    <p>Hello,user</p>
-    <a href="${pageContext.request.contextPath}/api/logout">Logout</a>
+    <p>Hello,master</p>
+    <a href="controller?command=logout">Logout</a>
 </body>
 </html>
