@@ -5,7 +5,7 @@ import entity.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao {
+public class UserDaoMock {
 
   private final List<User> store = new ArrayList<>();
 

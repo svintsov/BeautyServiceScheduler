@@ -2,7 +2,7 @@ package filter;
 
 import static java.util.Objects.nonNull;
 
-import dao.UserDao;
+import dao.UserDaoMock;
 import entity.Role;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
@@ -35,7 +35,7 @@ public class AuthFilter implements Filter {
     final String login = req.getParameter("login");
     final String password = req.getParameter("password");
 
-    @SuppressWarnings("unchecked") final AtomicReference<UserDao> dao = (AtomicReference<UserDao>) req
+    @SuppressWarnings("unchecked") final AtomicReference<UserDaoMock> dao = (AtomicReference<UserDaoMock>) req
         .getServletContext().getAttribute("dao");
 
     final HttpSession session = req.getSession();
@@ -78,7 +78,7 @@ public class AuthFilter implements Filter {
 
       req.getRequestDispatcher("/admin_menu.jsp").forward(req, res);
 
-    } else if (role.equals(Role.USER)) {
+    } else if (role.equals(Role.CUSTOMER)) {
 
       req.getRequestDispatcher("/user-menu.jsp").forward(req, res);
 

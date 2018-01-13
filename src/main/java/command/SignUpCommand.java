@@ -2,7 +2,7 @@ package command;
 
 import bundle.ConfigurationManager;
 import bundle.MessageManager;
-import dao.UserDao;
+import dao.UserDaoMock;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.servlet.http.HttpServletRequest;
 import service.SignUpService;
@@ -22,7 +22,7 @@ public class SignUpCommand implements Command {
     String email = request.getParameter(PARAM_NAME_EMAIL);
     String fullName = request.getParameter(PARAM_NAME_FULL_NAME);
 
-    final AtomicReference<UserDao> dao = (AtomicReference<UserDao>) request
+    final AtomicReference<UserDaoMock> dao = (AtomicReference<UserDaoMock>) request
         .getServletContext().getAttribute("dao");
 
     if (!SignUpService.isExist(login, password, dao)) {
