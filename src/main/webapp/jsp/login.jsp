@@ -8,7 +8,10 @@
 </head>
 <body>
 
-    <fmt:setLocale value = "uk_UA"/>
+    <a href="controller?command=setLocale&language=eng">eng</a>
+    <a href="controller?command=setLocale&language=ua">ua</a>
+
+    <fmt:setLocale value = "${sessionScope.locale}"/>
     <fmt:bundle basename="texts">
         <p><fmt:message key="text.login"/> </p>
         <br />
