@@ -5,9 +5,8 @@
 </head>
 <body>
 <h2>Привет всем!</h2>
-<a href="${pageContext.request.contextPath}/api/login">Sign in</a>
 <br>
-<a href="${pageContext.request.contextPath}/api/registration">Sign up</a>
+<jsp:forward page="/jsp/login.jsp"/>
 <br>
 </body>
 </html>
