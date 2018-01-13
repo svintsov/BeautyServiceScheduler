@@ -20,6 +20,11 @@ public enum CommandEnum {
     {
       this.command = new SignUpCommand();
     }
+  },
+  SETLOCALE{
+    {
+      this.command = new SetLocaleCommand();
+    }
   }
   ;
   Command command;
