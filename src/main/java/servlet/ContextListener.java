@@ -8,6 +8,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @WebListener
 public class ContextListener implements ServletContextListener {
@@ -24,6 +26,9 @@ public class ContextListener implements ServletContextListener {
     final ServletContext servletContext =
         servletContextEvent.getServletContext();
 
+    final Logger logger = LogManager.getRootLogger();
+
+    logger.info("first log from context listener");
 
     dao = new AtomicReference<>(new UserDao());
 
