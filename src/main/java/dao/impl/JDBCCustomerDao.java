@@ -37,6 +37,7 @@ public class JDBCCustomerDao implements CustomerDao {
     return false;
   }
 
+
   @Override
   public void create(Customer model) throws SQLException {
     //TODO add exeption or message why we can't create a new user

@@ -31,6 +31,7 @@ public class SignUpService {
     try {
       customerDao.get().create(customer);
       customerDao.get().close();
+      userDao.get().close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
