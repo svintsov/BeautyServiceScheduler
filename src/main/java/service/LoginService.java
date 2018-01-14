@@ -11,12 +11,11 @@ public class LoginService {
   private AtomicReference<UserDao> dao = new AtomicReference<>(factory.createUserDao());
 
   public Role getRole(String enterLogin, String enterPass) {
-    return dao.get().read(enterLogin,enterPass).getRole();
-    //return dao.get().getRoleByLoginPassword(enterLogin, enterPass);
+    return dao.get().readByLoginPassword(enterLogin,enterPass).getRole();
   }
 
   public boolean checkLogin(String enterLogin, String enterPass){
-    return dao.get().userIsExist(enterLogin,enterPass);
+    return dao.get().userIsExistByLoginPass(enterLogin,enterPass);
   }
 
 }

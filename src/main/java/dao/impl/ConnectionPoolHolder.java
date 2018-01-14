@@ -18,7 +18,7 @@ public class ConnectionPoolHolder {
           ds.setMinIdle(5);
           ds.setMaxIdle(10);
           ds.setMaxOpenPreparedStatements(100);
-          ds.setDriverClassName("com.mysql.jdbc.Driver");
+          ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
           dataSource = ds;
         }
       }

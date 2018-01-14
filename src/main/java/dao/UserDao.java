@@ -3,6 +3,9 @@ package dao;
 import entity.User;
 
 public interface UserDao extends Dao<User,Integer> {
-  User read(String login, String password);
-  boolean userIsExist(String login, String password);
+  User readByLoginPassword(String login, String password);
+  User readByLoginEmail(String login, String email);
+  boolean userIsExistByLoginPass(final String name,final String password);
+  boolean userIsExistByLoginEmail(final String name, final String email);
+
 }
