@@ -7,17 +7,15 @@ public class Visit {
 
   private int id;
   private BeautyService beautyServiceType;
-  private Master master;
+  private Employee master;
   private LocalDate day;
   private LocalTime start;
   private Customer customer;
   private State state;
 
-  public Visit(){
+  public Visit(){ }
 
-  }
-
-  public Visit(int id, BeautyService beautyServiceType, Master master, LocalDate day,
+  public Visit(int id, BeautyService beautyServiceType, Employee master, LocalDate day,
       LocalTime start, Customer customer, State state) {
     this.id = id;
     this.beautyServiceType = beautyServiceType;
@@ -44,11 +42,11 @@ public class Visit {
     this.beautyServiceType = beautyServiceType;
   }
 
-  public Master getMaster() {
+  public Employee getMaster() {
     return master;
   }
 
-  public void setMaster(Master master) {
+  public void setMaster(Employee master) {
     this.master = master;
   }
 

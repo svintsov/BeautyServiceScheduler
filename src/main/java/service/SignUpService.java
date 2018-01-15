@@ -5,7 +5,6 @@ import dao.DaoFactory;
 import dao.UserDao;
 import entity.Customer;
 import entity.Role;
-import entity.User;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;

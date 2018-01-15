@@ -4,7 +4,6 @@ import dao.CustomerDao;
 import dao.DaoFactory;
 import dao.UserDao;
 import entity.Customer;
-import entity.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

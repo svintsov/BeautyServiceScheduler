@@ -1,7 +1,6 @@
 package dao.mapper;
 
 import entity.Role;
-import entity.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;

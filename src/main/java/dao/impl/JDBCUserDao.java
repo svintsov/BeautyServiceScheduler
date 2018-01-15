@@ -2,7 +2,6 @@ package dao.impl;
 
 import dao.UserDao;
 import dao.mapper.UserMapper;
-import entity.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

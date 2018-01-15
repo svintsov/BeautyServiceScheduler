@@ -7,17 +7,54 @@ public class Customer {
   private int id;
   private String FIO;
   private List<Visit> visits;
-  private User user;
+  private String login;
+  private String password;
+  private String email;
+  private Role role;
 
-  public Customer(){
+  public Customer(){ }
 
-  }
-
-  public Customer(int id, String FIO, List<Visit> visits, User user) {
+  public Customer(int id, String FIO, List<Visit> visits, String login, String password,
+      String email) {
     this.id = id;
     this.FIO = FIO;
     this.visits = visits;
-    this.user = user;
+    this.login = login;
+    this.password = password;
+    this.email = email;
+    this.role=Role.CUSTOMER;
+  }
+
+  public String getLogin() {
+    return login;
+  }
+
+  public void setLogin(String login) {
+    this.login = login;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public Role getRole() {
+    return role;
+  }
+
+  public void setRole(Role role) {
+    this.role = role;
   }
 
   public int getId() {
@@ -44,43 +81,5 @@ public class Customer {
     this.visits = visits;
   }
 
-  public User getUser() {
-    return user;
-  }
 
-  public void setUser(User user) {
-    this.user = user;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-
-    Customer customer = (Customer) o;
-
-    if (id != customer.id) {
-      return false;
-    }
-    if (!FIO.equals(customer.FIO)) {
-      return false;
-    }
-    if (visits != null ? !visits.equals(customer.visits) : customer.visits != null) {
-      return false;
-    }
-    return user.equals(customer.user);
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + FIO.hashCode();
-    result = 31 * result + (visits != null ? visits.hashCode() : 0);
-    result = 31 * result + user.hashCode();
-    return result;
-  }
 }

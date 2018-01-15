@@ -1,37 +1,30 @@
 package entity;
 
+import java.util.List;
 
-public class User {
+public class Employee {
 
   private int id;
+  private String FIO;
+  private List<Visit> visits;
   private String login;
   private String password;
   private String email;
   private Role role;
 
-  public User(){
 
-  }
-
-  public User(int id, String login, String password, String email, Role role) {
-    this(login,password,email,role);
+  public Employee(int id, String FIO, List<Visit> visits, String login, String password,
+      String email, Role role) {
     this.id = id;
-  }
-
-  public User(String login, String password, String email, Role role) {
+    this.FIO = FIO;
+    this.visits = visits;
     this.login = login;
     this.password = password;
     this.email = email;
     this.role = role;
   }
 
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
+  public Employee(){ }
 
   public String getLogin() {
     return login;
@@ -65,6 +58,30 @@ public class User {
     this.role = role;
   }
 
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public String getFIO() {
+    return FIO;
+  }
+
+  public void setFIO(String FIO) {
+    this.FIO = FIO;
+  }
+
+  public List<Visit> getVisits() {
+    return visits;
+  }
+
+  public void setVisits(List<Visit> visits) {
+    this.visits = visits;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -74,26 +91,34 @@ public class User {
       return false;
     }
 
-    User user = (User) o;
+    Employee employee = (Employee) o;
 
-    if (id != user.id) {
+    if (id != employee.id) {
       return false;
     }
-    if (!login.equals(user.login)) {
+    if (!FIO.equals(employee.FIO)) {
       return false;
     }
-    if (!password.equals(user.password)) {
+    if (!visits.equals(employee.visits)) {
       return false;
     }
-    if (!email.equals(user.email)) {
+    if (!login.equals(employee.login)) {
       return false;
     }
-    return role == user.role;
+    if (!password.equals(employee.password)) {
+      return false;
+    }
+    if (!email.equals(employee.email)) {
+      return false;
+    }
+    return role == employee.role;
   }
 
   @Override
   public int hashCode() {
     int result = id;
+    result = 31 * result + FIO.hashCode();
+    result = 31 * result + visits.hashCode();
     result = 31 * result + login.hashCode();
     result = 31 * result + password.hashCode();
     result = 31 * result + email.hashCode();
