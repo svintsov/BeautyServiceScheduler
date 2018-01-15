@@ -5,6 +5,7 @@ import static java.util.Objects.nonNull;
 import bundle.ConfigurationManager;
 import bundle.MessageManager;
 import entity.Role;
+import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import service.LoginService;
@@ -16,13 +17,10 @@ public class LoginCommand implements Command {
 
   @Override
   public String execute(HttpServletRequest request) {
-    String page = null;
+    String page;
 // извлечение из запроса логина и пароля
     String login = request.getParameter(PARAM_NAME_LOGIN);
     String password = request.getParameter(PARAM_NAME_PASSWORD);
-// проверка логина и пароля
-
-    //final AtomicReference<UserDao> dao = (AtomicReference<UserDao>) request.getServletContext().getAttribute("dao");
 
     final LoginService loginService = new LoginService();
 
@@ -37,24 +35,22 @@ public class LoginCommand implements Command {
 
       return getMenu(role);
 
-
-    } else if (loginService.checkLogin(login,password)) {
-
-      final Role role = loginService.getRole(login,password);
-
-      request.getSession().setAttribute("password", password);
-      request.getSession().setAttribute("login", login);
-      request.getSession().setAttribute("role", role);
-
-      return getMenu(role);
+    } else {
+      try {
+        final Role role = loginService.getRole(login, password);
+        request.getSession().setAttribute("password", password);
+        request.getSession().setAttribute("login", login);
+        request.getSession().setAttribute("role", role);
+        return getMenu(role);
+      } catch (SQLException e) {
+        request.setAttribute("errorLoginPassMessage",
+            MessageManager.getProperty("message.loginerror"));
+        page = ConfigurationManager.getProperty("path.page.login");
+        return page;
+      }
 
     }
-    else {
-      request.setAttribute("errorLoginPassMessage",
-          MessageManager.getProperty("message.loginerror"));
-      page = ConfigurationManager.getProperty("path.page.login");
-    }
-    return page;
+
   }
 
   /**

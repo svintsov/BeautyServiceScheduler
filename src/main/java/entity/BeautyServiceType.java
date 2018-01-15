@@ -1,5 +1,5 @@
 package entity;
 
-public enum BeautyService {
+public enum BeautyServiceType {
   AROMATHERAPY,MANICURE,PEDICURE,REFLEXOLOGY
 }

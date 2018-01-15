@@ -6,21 +6,19 @@ import java.time.LocalTime;
 public class Visit {
 
   private int id;
-  private BeautyService beautyServiceType;
-  private Master master;
+  private BeautyServiceType beautyServiceTypeType;
+  private User master;
   private LocalDate day;
   private LocalTime start;
-  private Customer customer;
+  private User customer;
   private State state;
 
-  public Visit(){
+  public Visit(){ }
 
-  }
-
-  public Visit(int id, BeautyService beautyServiceType, Master master, LocalDate day,
-      LocalTime start, Customer customer, State state) {
+  public Visit(int id, BeautyServiceType beautyServiceTypeType, User master, LocalDate day,
+      LocalTime start, User customer, State state) {
     this.id = id;
-    this.beautyServiceType = beautyServiceType;
+    this.beautyServiceTypeType = beautyServiceTypeType;
     this.master = master;
     this.day = day;
     this.start = start;
@@ -36,19 +34,19 @@ public class Visit {
     this.id = id;
   }
 
-  public BeautyService getBeautyServiceType() {
-    return beautyServiceType;
+  public BeautyServiceType getBeautyServiceTypeType() {
+    return beautyServiceTypeType;
   }
 
-  public void setBeautyServiceType(BeautyService beautyServiceType) {
-    this.beautyServiceType = beautyServiceType;
+  public void setBeautyServiceTypeType(BeautyServiceType beautyServiceTypeType) {
+    this.beautyServiceTypeType = beautyServiceTypeType;
   }
 
-  public Master getMaster() {
+  public User getMaster() {
     return master;
   }
 
-  public void setMaster(Master master) {
+  public void setMaster(User master) {
     this.master = master;
   }
 
@@ -68,11 +66,11 @@ public class Visit {
     this.start = start;
   }
 
-  public Customer getCustomer() {
+  public User getCustomer() {
     return customer;
   }
 
-  public void setCustomer(Customer customer) {
+  public void setCustomer(User customer) {
     this.customer = customer;
   }
 
@@ -98,7 +96,7 @@ public class Visit {
     if (id != visit.id) {
       return false;
     }
-    if (beautyServiceType != visit.beautyServiceType) {
+    if (beautyServiceTypeType != visit.beautyServiceTypeType) {
       return false;
     }
     if (!master.equals(visit.master)) {
@@ -119,7 +117,7 @@ public class Visit {
   @Override
   public int hashCode() {
     int result = id;
-    result = 31 * result + beautyServiceType.hashCode();
+    result = 31 * result + beautyServiceTypeType.hashCode();
     result = 31 * result + master.hashCode();
     result = 31 * result + day.hashCode();
     result = 31 * result + start.hashCode();

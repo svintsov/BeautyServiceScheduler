@@ -2,10 +2,12 @@ package command;
 
 import bundle.ConfigurationManager;
 import bundle.MessageManager;
+import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import service.SignUpService;
 
 public class SignUpCommand implements Command {
+
 
   private static final String PARAM_NAME_LOGIN = "login";
   private static final String PARAM_NAME_PASSWORD = "password";
@@ -22,18 +24,13 @@ public class SignUpCommand implements Command {
 
     SignUpService signUpService = new SignUpService();
 
-    /*final AtomicReference<UserDaoMock> dao = (AtomicReference<UserDaoMock>) request
-        .getServletContext().getAttribute("dao");*/
-
-    if (!signUpService.isExist(login, email)) {
-      signUpService.registerUser(login, password, email, fullName);
-      //request.getServletContext().setAttribute("dao", dao);
+    try {
+      signUpService.register(login,password,email,fullName);
       return ConfigurationManager.getProperty("path.page.login");
-    } else {
+    } catch (SQLException e) {
       request.setAttribute("errorRegistrationMessage",
           MessageManager.getProperty("message.registrationerror"));
       return ConfigurationManager.getProperty("path.page.registration");
     }
-
   }
 }
