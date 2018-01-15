@@ -2,8 +2,6 @@ package command;
 
 import bundle.ConfigurationManager;
 import bundle.MessageManager;
-import dao.UserDao;
-import java.util.concurrent.atomic.AtomicReference;
 import javax.servlet.http.HttpServletRequest;
 import service.SignUpService;
 
@@ -22,12 +20,14 @@ public class SignUpCommand implements Command {
     String email = request.getParameter(PARAM_NAME_EMAIL);
     String fullName = request.getParameter(PARAM_NAME_FULL_NAME);
 
-    final AtomicReference<UserDao> dao = (AtomicReference<UserDao>) request
-        .getServletContext().getAttribute("dao");
+    SignUpService signUpService = new SignUpService();
 
-    if (!SignUpService.isExist(login, password, dao)) {
-      SignUpService.registerUser(login, password, email, fullName, dao);
-      request.getServletContext().setAttribute("dao", dao);
+    /*final AtomicReference<UserDaoMock> dao = (AtomicReference<UserDaoMock>) request
+        .getServletContext().getAttribute("dao");*/
+
+    if (!signUpService.isExist(login, email)) {
+      signUpService.registerUser(login, password, email, fullName);
+      //request.getServletContext().setAttribute("dao", dao);
       return ConfigurationManager.getProperty("path.page.login");
     } else {
       request.setAttribute("errorRegistrationMessage",

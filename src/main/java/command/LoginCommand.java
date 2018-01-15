@@ -4,9 +4,7 @@ import static java.util.Objects.nonNull;
 
 import bundle.ConfigurationManager;
 import bundle.MessageManager;
-import dao.UserDao;
 import entity.Role;
-import java.util.concurrent.atomic.AtomicReference;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import service.LoginService;
@@ -24,8 +22,9 @@ public class LoginCommand implements Command {
     String password = request.getParameter(PARAM_NAME_PASSWORD);
 // проверка логина и пароля
 
-    final AtomicReference<UserDao> dao = (AtomicReference<UserDao>) request
-        .getServletContext().getAttribute("dao");
+    //final AtomicReference<UserDao> dao = (AtomicReference<UserDao>) request.getServletContext().getAttribute("dao");
+
+    final LoginService loginService = new LoginService();
 
     final HttpSession session = request.getSession();
 
@@ -39,9 +38,9 @@ public class LoginCommand implements Command {
       return getMenu(role);
 
 
-    } else if (LoginService.checkLogin(login,password,dao)) {
+    } else if (loginService.checkLogin(login,password)) {
 
-      final Role role = LoginService.getRole(login,password,dao);
+      final Role role = loginService.getRole(login,password);
 
       request.getSession().setAttribute("password", password);
       request.getSession().setAttribute("login", login);
@@ -68,7 +67,7 @@ public class LoginCommand implements Command {
       return ConfigurationManager.getProperty("path.page.admin");
 
 
-    } else if (role.equals(Role.USER)) {
+    } else if (role.equals(Role.CUSTOMER)) {
       return ConfigurationManager.getProperty("path.page.main");
 
     } else if (role.equals(Role.MASTER)) {
