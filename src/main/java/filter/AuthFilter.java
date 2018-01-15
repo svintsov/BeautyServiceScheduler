@@ -2,7 +2,6 @@ package filter;
 
 import static java.util.Objects.nonNull;
 
-import dao.UserDaoMock;
 import entity.Role;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;

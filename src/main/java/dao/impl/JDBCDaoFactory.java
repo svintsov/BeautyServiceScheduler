@@ -1,8 +1,6 @@
 package dao.impl;
 
-import dao.CustomerDao;
 import dao.DaoFactory;
-import dao.MasterDao;
 import dao.UserDao;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -17,15 +15,6 @@ public class JDBCDaoFactory extends DaoFactory {
     return new JDBCUserDao(getConnection());
   }
 
-  @Override
-  public CustomerDao createCustomerDao() {
-    return new JDBCCustomerDao(getConnection());
-  }
-
-  @Override
-  public MasterDao createMasterDao(){
-    return new JDBCMasterDao(getConnection());
-  }
 
   private Connection getConnection(){
     try {

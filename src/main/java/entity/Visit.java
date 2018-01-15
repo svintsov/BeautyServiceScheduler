@@ -6,8 +6,8 @@ import java.time.LocalTime;
 public class Visit {
 
   private int id;
-  private BeautyService beautyServiceType;
-  private Employee master;
+  private BeautyServiceType beautyServiceTypeType;
+  private User master;
   private LocalDate day;
   private LocalTime start;
   private Customer customer;
@@ -15,10 +15,10 @@ public class Visit {
 
   public Visit(){ }
 
-  public Visit(int id, BeautyService beautyServiceType, Employee master, LocalDate day,
+  public Visit(int id, BeautyServiceType beautyServiceTypeType, User master, LocalDate day,
       LocalTime start, Customer customer, State state) {
     this.id = id;
-    this.beautyServiceType = beautyServiceType;
+    this.beautyServiceTypeType = beautyServiceTypeType;
     this.master = master;
     this.day = day;
     this.start = start;
@@ -34,19 +34,19 @@ public class Visit {
     this.id = id;
   }
 
-  public BeautyService getBeautyServiceType() {
-    return beautyServiceType;
+  public BeautyServiceType getBeautyServiceTypeType() {
+    return beautyServiceTypeType;
   }
 
-  public void setBeautyServiceType(BeautyService beautyServiceType) {
-    this.beautyServiceType = beautyServiceType;
+  public void setBeautyServiceTypeType(BeautyServiceType beautyServiceTypeType) {
+    this.beautyServiceTypeType = beautyServiceTypeType;
   }
 
-  public Employee getMaster() {
+  public User getMaster() {
     return master;
   }
 
-  public void setMaster(Employee master) {
+  public void setMaster(User master) {
     this.master = master;
   }
 
@@ -96,7 +96,7 @@ public class Visit {
     if (id != visit.id) {
       return false;
     }
-    if (beautyServiceType != visit.beautyServiceType) {
+    if (beautyServiceTypeType != visit.beautyServiceTypeType) {
       return false;
     }
     if (!master.equals(visit.master)) {
@@ -117,7 +117,7 @@ public class Visit {
   @Override
   public int hashCode() {
     int result = id;
-    result = 31 * result + beautyServiceType.hashCode();
+    result = 31 * result + beautyServiceTypeType.hashCode();
     result = 31 * result + master.hashCode();
     result = 31 * result + day.hashCode();
     result = 31 * result + start.hashCode();

@@ -1,13 +1,15 @@
 package command;
 
-import bundle.ConfigurationManager;
-import bundle.MessageManager;
 import javax.servlet.http.HttpServletRequest;
-import service.SignUpService;
 
 public class SignUpCommand implements Command {
 
-  private static final String PARAM_NAME_LOGIN = "login";
+  @Override
+  public String execute(HttpServletRequest request) {
+    return null;
+  }
+
+ /* private static final String PARAM_NAME_LOGIN = "login";
   private static final String PARAM_NAME_PASSWORD = "password";
   public static final String PARAM_NAME_EMAIL = "email";
   public static final String PARAM_NAME_FULL_NAME = "full name";
@@ -22,8 +24,6 @@ public class SignUpCommand implements Command {
 
     SignUpService signUpService = new SignUpService();
 
-    /*final AtomicReference<UserDaoMock> dao = (AtomicReference<UserDaoMock>) request
-        .getServletContext().getAttribute("dao");*/
 
     if (!signUpService.isExist(login, email)) {
       signUpService.registerUser(login, password, email, fullName);
@@ -35,5 +35,5 @@ public class SignUpCommand implements Command {
       return ConfigurationManager.getProperty("path.page.registration");
     }
 
-  }
+  }*/
 }
