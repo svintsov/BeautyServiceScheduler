@@ -13,11 +13,8 @@ public class User {
   private Role role;
 
 
-  public User(int id, String FIO, List<Visit> visits, String login, String password,
-      String email, Role role) {
-    this.id = id;
+  public User(String login, String password, String email, String FIO, Role role) {
     this.FIO = FIO;
-    this.visits = visits;
     this.login = login;
     this.password = password;
     this.email = email;

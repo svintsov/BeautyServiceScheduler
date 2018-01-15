@@ -18,8 +18,20 @@ public class JDBCUserDao implements UserDao {
     mapper = new UserMapper();
   }
 
+  public Connection getConnection() {
+    return connection;
+  }
+
   @Override
   public void create(User model) throws SQLException {
+    try (PreparedStatement statement = connection.prepareStatement(SQLUser.INSERT.QUERY)) {
+      statement.setString(1, model.getLogin());
+      statement.setString(2, model.getPassword());
+      statement.setString(3, model.getEmail());
+      statement.setString(4, model.getFIO());
+      statement.setInt(5, model.getRole().getId());
+      statement.executeUpdate();
+    }
 
   }
 
@@ -75,9 +87,9 @@ public class JDBCUserDao implements UserDao {
 
 
   enum SQLUser {
-    GET_BY_ID("select * from users join roles using(idroles) WHERE idusers = (?)"),
-    GET_BY_LOGIN("select * from users join roles using(idroles) WHERE login = (?)"),
-    INSERT(""),
+    GET_BY_ID("SELECT * FROM users JOIN roles USING(idroles) WHERE idusers = (?)"),
+    GET_BY_LOGIN("SELECT * FROM users JOIN roles USING(idroles) WHERE login = (?)"),
+    INSERT("INSERT INTO users(login,password,email,full_name,idroles) VALUES((?),(?),(?),(?),(?))"),
     DELETE(""),
     UPDATE("");
 

@@ -1,15 +1,15 @@
 package command;
 
+import bundle.ConfigurationManager;
+import bundle.MessageManager;
+import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
+import service.SignUpService;
 
 public class SignUpCommand implements Command {
 
-  @Override
-  public String execute(HttpServletRequest request) {
-    return null;
-  }
 
- /* private static final String PARAM_NAME_LOGIN = "login";
+  private static final String PARAM_NAME_LOGIN = "login";
   private static final String PARAM_NAME_PASSWORD = "password";
   public static final String PARAM_NAME_EMAIL = "email";
   public static final String PARAM_NAME_FULL_NAME = "full name";
@@ -24,16 +24,13 @@ public class SignUpCommand implements Command {
 
     SignUpService signUpService = new SignUpService();
 
-
-    if (!signUpService.isExist(login, email)) {
-      signUpService.registerUser(login, password, email, fullName);
-      //request.getServletContext().setAttribute("dao", dao);
+    try {
+      signUpService.register(login,password,email,fullName);
       return ConfigurationManager.getProperty("path.page.login");
-    } else {
+    } catch (SQLException e) {
       request.setAttribute("errorRegistrationMessage",
           MessageManager.getProperty("message.registrationerror"));
       return ConfigurationManager.getProperty("path.page.registration");
     }
-
-  }*/
+  }
 }
