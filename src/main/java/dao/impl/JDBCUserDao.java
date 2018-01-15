@@ -75,8 +75,8 @@ public class JDBCUserDao implements UserDao {
 
 
   enum SQLUser {
-    GET_BY_ID("SELECT * FROM users WHERE idusers = (?)"),
-    GET_BY_LOGIN("SELECT * FROM users WHERE login = (?)"),
+    GET_BY_ID("select * from users join roles using(idroles) WHERE idusers = (?)"),
+    GET_BY_LOGIN("select * from users join roles using(idroles) WHERE login = (?)"),
     INSERT(""),
     DELETE(""),
     UPDATE("");

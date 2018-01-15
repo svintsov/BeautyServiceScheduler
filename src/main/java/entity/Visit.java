@@ -10,13 +10,13 @@ public class Visit {
   private User master;
   private LocalDate day;
   private LocalTime start;
-  private Customer customer;
+  private User customer;
   private State state;
 
   public Visit(){ }
 
   public Visit(int id, BeautyServiceType beautyServiceTypeType, User master, LocalDate day,
-      LocalTime start, Customer customer, State state) {
+      LocalTime start, User customer, State state) {
     this.id = id;
     this.beautyServiceTypeType = beautyServiceTypeType;
     this.master = master;
@@ -66,11 +66,11 @@ public class Visit {
     this.start = start;
   }
 
-  public Customer getCustomer() {
+  public User getCustomer() {
     return customer;
   }
 
-  public void setCustomer(Customer customer) {
+  public void setCustomer(User customer) {
     this.customer = customer;
   }
 

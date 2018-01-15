@@ -36,10 +36,8 @@ public class LoginCommand implements Command {
       return getMenu(role);
 
     } else {
-
-      final Role role;
       try {
-        role = loginService.getRole(login, password);
+        final Role role = loginService.getRole(login, password);
         request.getSession().setAttribute("password", password);
         request.getSession().setAttribute("login", login);
         request.getSession().setAttribute("role", role);
