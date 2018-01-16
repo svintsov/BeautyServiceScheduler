@@ -8,15 +8,22 @@ import java.util.Map;
 
 public class UserMapper implements ObjectMapper<User> {
 
+  String ID="idusers";
+  String LOGIN="login";
+  String PASSWORD="password";
+  String EMAIL="email";
+  String FULL_NAME="full_name";
+  String TYPE="type";
+
   @Override
   public User extractFromResultSet(ResultSet rs) throws SQLException {
     User result = new User();
-    result.setId(rs.getInt("idusers"));
-    result.setLogin(rs.getString("login"));
-    result.setPassword(rs.getString("password"));
-    result.setEmail(rs.getString("email"));
-    result.setFIO(rs.getString("full_name"));
-    result.setRole(Role.valueOf(rs.getString("type")));
+    result.setId(rs.getInt(ID));
+    result.setLogin(rs.getString(LOGIN));
+    result.setPassword(rs.getString(PASSWORD));
+    result.setEmail(rs.getString(EMAIL));
+    result.setFIO(rs.getString(FULL_NAME));
+    result.setRole(Role.valueOf(rs.getString(TYPE)));
     return result;
 
   }
