@@ -5,6 +5,6 @@ public class MasterMapper {
   String LOGIN="mLogin";
   String PASSWORD="mPass";
   String EMAIL="mEmail";
-  String FULL_NAME="mName";
+  String FULL_NAME="master";
   String TYPE="mType";
 }

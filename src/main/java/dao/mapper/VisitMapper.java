@@ -14,7 +14,7 @@ public class VisitMapper implements ObjectMapper<Visit> {
   private final String DAY="day";
   private final String START="start_time";
   private final String STATE="state";
-  private final String SERVICE_TYPE = "name";
+  private final String SERVICE_TYPE = "service";
   private final String REVIEW="review";
 
   @Override
