@@ -6,9 +6,11 @@ import dao.mapper.CustomerMapper;
 import dao.mapper.MasterMapper;
 import dao.mapper.UserMapper;
 import dao.mapper.VisitMapper;
+import entity.State;
 import entity.User;
 import entity.Visit;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -71,13 +73,42 @@ public class JDBCVisitDao implements VisitDao {
   }
 
   @Override
+  public void update(Visit visit, State state) throws SQLException {
+    try(PreparedStatement st = connection.prepareStatement(SQLVisit.UPDATE_STATE.QUERY)){
+      st.setString(1,state.toString());
+      st.setInt(2,visit.getId());
+      st.executeUpdate();
+    }
+  }
+
+  @Override
+  public void update(Visit visit, User customer) throws SQLException {
+    try(PreparedStatement st = connection.prepareStatement(SQLVisit.UPDATE_STATE.QUERY)){
+      st.setInt(1,customer.getId());
+      st.setInt(2,visit.getId());
+      st.executeUpdate();
+    }
+  }
+
+  @Override
   public void create(Visit model) throws SQLException {
 
   }
 
   @Override
-  public Visit read(Integer integer) throws SQLException {
-    return null;
+  public Visit read(Integer id) throws SQLException {
+    Visit result = new Visit();
+    result.setId(-1);
+
+    try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.READ.QUERY))){
+      st.setInt(1,id);
+      final ResultSet rs = st.executeQuery();
+
+      if(rs.next()){
+        result = visitMapper.extractFromResultSet(rs);
+      }
+    }
+    return result;
   }
 
   @Override
@@ -105,12 +136,13 @@ public class JDBCVisitDao implements VisitDao {
   }
 
   enum SQLVisit {
-    READ(""),
+    READ("visit.read.id"),
     READ_ALL("visit.read.all"),
     INSERT(""),
     DELETE(""),
     DELETE_ALL("visit.delete.all"),
-    UPDATE(""),
+    UPDATE_STATE("visit.update.state"),
+    UPDATE_CUSTOMER("visit.update.customer"),
     SAFE_ON("sql.safe_mode.on"),
     SAFE_OFF("sql.safe_mode.off");
 

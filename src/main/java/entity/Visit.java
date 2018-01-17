@@ -117,10 +117,10 @@ public class Visit {
     return "Visit{" +
         "id=" + id +
         ", beautyServiceType=" + beautyServiceType +
-        ", master=" + master.getId() +
+        ", master=" + master +
         ", day=" + day +
         ", start=" + start +
-        ", customer=" + customer.getId() +
+        ", customer=" + customer +
         ", state=" + state +
         ", review='" + review + '\'' +
         '}';
