@@ -1,6 +1,6 @@
 package dao.mapper;
 
-public class MasterMapper {
+public class MasterMapper extends UserMapper{
   String ID="mID";
   String LOGIN="mLogin";
   String PASSWORD="mPass";

@@ -30,7 +30,8 @@ public class VisitMapper implements ObjectMapper<Visit> {
   }
 
   @Override
-  public Visit makeUnique(Map<Integer, Visit> cache, Visit object) {
-    return null;
+  public Visit makeUnique(Map<Integer, Visit> cache, Visit visit) {
+    cache.putIfAbsent(visit.getId(),visit);
+    return cache.get(visit.getId());
   }
 }
