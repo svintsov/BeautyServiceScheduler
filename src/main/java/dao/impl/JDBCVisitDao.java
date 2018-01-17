@@ -64,7 +64,9 @@ public class JDBCVisitDao implements VisitDao {
   @Override
   public void deleteAll() throws SQLException {
     try(Statement st = connection.createStatement()){
+      st.executeUpdate(SQLVisit.SAFE_OFF.QUERY);
       st.executeUpdate(SQLVisit.DELETE_ALL.QUERY);
+      st.executeUpdate(SQLVisit.SAFE_ON.QUERY);
     }
   }
 
@@ -105,7 +107,9 @@ public class JDBCVisitDao implements VisitDao {
     INSERT(""),
     DELETE(""),
     DELETE_ALL("visit.delete.all"),
-    UPDATE("");
+    UPDATE(""),
+    SAFE_ON("sql.safe_mode.on"),
+    SAFE_OFF("sql.safe_mode.off");
 
     String QUERY;
 
