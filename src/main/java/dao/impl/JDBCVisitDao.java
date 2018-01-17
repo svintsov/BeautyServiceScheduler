@@ -90,8 +90,6 @@ public class JDBCVisitDao implements VisitDao {
 
   }
 
-
-
   @Override
   public void close(){
     try {
@@ -99,6 +97,11 @@ public class JDBCVisitDao implements VisitDao {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public Connection getConnection() {
+    return this.connection;
   }
 
   enum SQLVisit {

@@ -1,10 +1,14 @@
 package dao.mapper;
 
 public class MasterMapper extends UserMapper{
-  String ID="mID";
-  String LOGIN="mLogin";
-  String PASSWORD="mPass";
-  String EMAIL="mEmail";
-  String FULL_NAME="master";
-  String TYPE="mType";
+
+  public MasterMapper(){
+    ID="mID";
+    LOGIN="mLogin";
+    PASSWORD="mPass";
+    EMAIL="mEmail";
+    FULL_NAME="master";
+    TYPE="mType";
+
+  }
 }

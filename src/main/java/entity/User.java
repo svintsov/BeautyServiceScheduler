@@ -90,36 +90,24 @@ public class User {
 
     User user = (User) o;
 
-    if (id != user.id) {
-      return false;
-    }
-    if (!FIO.equals(user.FIO)) {
-      return false;
-    }
-    if (!visits.equals(user.visits)) {
-      return false;
-    }
-    if (!login.equals(user.login)) {
-      return false;
-    }
-    if (!password.equals(user.password)) {
-      return false;
-    }
-    if (!email.equals(user.email)) {
-      return false;
-    }
-    return role == user.role;
+    return id == user.id;
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + FIO.hashCode();
-    result = 31 * result + visits.hashCode();
-    result = 31 * result + login.hashCode();
-    result = 31 * result + password.hashCode();
-    result = 31 * result + email.hashCode();
-    result = 31 * result + role.hashCode();
-    return result;
+    return id;
+  }
+
+  @Override
+  public String toString() {
+    return "User{" +
+        "id=" + id +
+        ", FIO='" + FIO + '\'' +
+        ", visits=" + visits +
+        ", login='" + login + '\'' +
+        ", password='" + password + '\'' +
+        ", email='" + email + '\'' +
+        ", role=" + role +
+        '}';
   }
 }

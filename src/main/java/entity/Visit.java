@@ -93,4 +93,36 @@ public class Visit {
     this.state = state;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    Visit visit = (Visit) o;
+
+    return id == visit.id;
+  }
+
+  @Override
+  public int hashCode() {
+    return id;
+  }
+
+  @Override
+  public String toString() {
+    return "Visit{" +
+        "id=" + id +
+        ", beautyServiceType=" + beautyServiceType +
+        ", master=" + master.getId() +
+        ", day=" + day +
+        ", start=" + start +
+        ", customer=" + customer.getId() +
+        ", state=" + state +
+        ", review='" + review + '\'' +
+        '}';
+  }
 }
