@@ -31,7 +31,7 @@
             <input type="submit" value="Log in"/>
         </form><hr/>
 
-        <a href="controller?command=registrationForm">Sign up</a>
+        <a href="${pageContext.request.contextPath}/jsp/registration.jsp">Sign up</a>
     </fmt:bundle>
 
 </body>

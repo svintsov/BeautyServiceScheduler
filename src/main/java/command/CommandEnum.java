@@ -25,8 +25,12 @@ public enum CommandEnum {
     {
       this.command = new SetLocaleCommand();
     }
-  }
-  ;
+  },
+  ADMINPAGE{
+    {
+      this.command = new AdminPageCommand();
+    }
+  };
   Command command;
 
   public Command getCurrentCommand() {

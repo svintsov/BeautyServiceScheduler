@@ -33,7 +33,7 @@ public class LoginCommand implements Command {
 
       final Role role = (Role) session.getAttribute("role");
 
-      return getMenu(role);
+      return getMenu(role,request);
 
     } else {
       try {
@@ -41,7 +41,7 @@ public class LoginCommand implements Command {
         request.getSession().setAttribute("password", password);
         request.getSession().setAttribute("login", login);
         request.getSession().setAttribute("role", role);
-        return getMenu(role);
+        return getMenu(role,request);
       } catch (SQLException e) {
         request.setAttribute("errorLoginPassMessage",
             MessageManager.getProperty("message.loginerror"));
@@ -56,11 +56,11 @@ public class LoginCommand implements Command {
   /**
    * Move user to menu. If access 'admin' move to admin menu. If access 'user' move to user menu.
    */
-  private String getMenu(
-      final Role role) {
+  private String getMenu(final Role role,final HttpServletRequest request) {
 
     if (role.equals(Role.ADMINISTRATOR)) {
-      return ConfigurationManager.getProperty("path.page.admin");
+      CommandEnum commandEnum = CommandEnum.ADMINPAGE;
+      return commandEnum.getCurrentCommand().execute(request);
 
 
     } else if (role.equals(Role.CUSTOMER)) {
