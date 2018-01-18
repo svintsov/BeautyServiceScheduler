@@ -35,6 +35,11 @@ public enum CommandEnum {
     {
       this.command = new DeleteVisitCommand();
     }
+  },
+  FINISH_VISIT{
+    {
+      this.command = new FinishVisitCommand();
+    }
   };
   Command command;
 

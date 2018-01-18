@@ -44,10 +44,17 @@
                 <c:out value="${visit.review}" default="null"/>
             </td>
             <td>
-                <form name="visit_element" method="POST" action="controller">
+                <form name="visit_element_delete" method="POST" action="controller">
                     <input type="hidden" name="command" value="delete_visit" />
                     <input type="hidden" name="idvisit" value="${visit.id}" />
                     <input type="submit" value="Delete"/>
+                </form>
+            </td>
+            <td>
+                <form name="visit_element_finish" method="POST" action="controller">
+                    <input type="hidden" name="command" value="finish_visit" />
+                    <input type="hidden" name="idvisit" value="${visit.id}" />
+                    <input type="submit" value="Finish"/>
                 </form>
             </td>
         </tr>

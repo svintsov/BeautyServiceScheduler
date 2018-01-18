@@ -81,19 +81,19 @@ public class JDBCVisitDao implements VisitDao {
   }
 
   @Override
-  public void update(Visit visit, State state) throws SQLException {
+  public void update(int id, State state) throws SQLException {
     try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.UPDATE_STATE.QUERY))){
       st.setString(1,state.toString());
-      st.setInt(2,visit.getId());
+      st.setInt(2,id);
       st.executeUpdate();
     }
   }
 
   @Override
-  public void update(Visit visit, User customer) throws SQLException {
-    try(PreparedStatement st = connection.prepareStatement(SQLVisit.UPDATE_STATE.QUERY)){
+  public void update(int id, User customer) throws SQLException {
+    try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.UPDATE_STATE.QUERY))){
       st.setInt(1,customer.getId());
-      st.setInt(2,visit.getId());
+      st.setInt(2,id);
       st.executeUpdate();
     }
   }
