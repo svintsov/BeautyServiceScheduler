@@ -61,5 +61,6 @@
     </c:forEach>
 </table>
     <a href="controller?command=logout">Logout</a>
+    <a href="controller?command=adding_form">Add Visit</a>
 </body>
 </html>

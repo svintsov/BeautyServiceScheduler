@@ -40,6 +40,16 @@ public enum CommandEnum {
     {
       this.command = new FinishVisitCommand();
     }
+  },
+  ADDING_FORM{
+    {
+      this.command = new AddingFormCommand();
+    }
+  },
+  CREATE_VISIT{
+    {
+      this.command = new CreateVisitCommand();
+    }
   };
   Command command;
 

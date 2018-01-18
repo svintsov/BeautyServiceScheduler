@@ -21,6 +21,7 @@ public class VisitService {
   public void deleteByID(int id) throws SQLException{
     final AtomicReference<VisitDao> dao = new AtomicReference<>(DaoFactory.getInstance().createVisitDao());
     final Connection connection = dao.get().getConnection();
+    connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
     connection.setAutoCommit(false);
     try {
       dao.get().delete(id);
@@ -37,6 +38,7 @@ public class VisitService {
   public void updateStateByID(int id) throws SQLException{
     final AtomicReference<VisitDao> dao = new AtomicReference<>(DaoFactory.getInstance().createVisitDao());
     final Connection connection = dao.get().getConnection();
+    connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
     connection.setAutoCommit(false);
     try {
       dao.get().update(id, State.DONE);
@@ -48,6 +50,10 @@ public class VisitService {
     } finally {
       connection.close();
     }
+  }
+
+  public void createVisit(Visit visit) throws SQLException{
+
   }
 
 }
