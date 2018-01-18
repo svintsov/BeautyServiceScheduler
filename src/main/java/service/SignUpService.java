@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class SignUpService {
-  private AtomicReference<UserDao> dao = new AtomicReference<>(DaoFactory.getInstance().createUserDao());
+  private final AtomicReference<UserDao> dao = new AtomicReference<>(DaoFactory.getInstance().createUserDao());
 
   public void register(String login, String password, String email, String fullName) throws  SQLException{
 

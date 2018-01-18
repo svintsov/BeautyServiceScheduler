@@ -1,5 +1,6 @@
 package dao.impl;
 
+import bundle.SQLQueryManager;
 import dao.UserDao;
 import dao.mapper.UserMapper;
 import entity.User;
@@ -24,7 +25,7 @@ public class JDBCUserDao implements UserDao {
 
   @Override
   public void create(User model) throws SQLException {
-    try (PreparedStatement statement = connection.prepareStatement(SQLUser.INSERT.QUERY)) {
+    try (PreparedStatement statement = connection.prepareStatement(SQLQueryManager.getProperty(SQLUser.INSERT.QUERY))) {
       statement.setString(1, model.getLogin());
       statement.setString(2, model.getPassword());
       statement.setString(3, model.getEmail());
@@ -40,7 +41,7 @@ public class JDBCUserDao implements UserDao {
     User result = new User();
     result.setId(-1);
 
-    try (PreparedStatement statement = connection.prepareStatement(SQLUser.GET_BY_ID.QUERY)) {
+    try (PreparedStatement statement = connection.prepareStatement(SQLQueryManager.getProperty(SQLUser.GET_BY_ID.QUERY))) {
       statement.setInt(1, id);
       final ResultSet rs = statement.executeQuery();
       if (rs.next()) {
@@ -55,7 +56,7 @@ public class JDBCUserDao implements UserDao {
     User result = new User();
     result.setId(-1);
 
-    try (PreparedStatement statement = connection.prepareStatement(SQLUser.GET_BY_LOGIN.QUERY)) {
+    try (PreparedStatement statement = connection.prepareStatement(SQLQueryManager.getProperty(SQLUser.GET_BY_LOGIN.QUERY))) {
       statement.setString(1, login);
       final ResultSet rs = statement.executeQuery();
       if (rs.next()) {
@@ -87,9 +88,9 @@ public class JDBCUserDao implements UserDao {
 
 
   enum SQLUser {
-    GET_BY_ID("SELECT * FROM users JOIN roles USING(idroles) WHERE idusers = (?)"),
-    GET_BY_LOGIN("SELECT * FROM users JOIN roles USING(idroles) WHERE login = (?)"),
-    INSERT("INSERT INTO users(login,password,email,full_name,idroles) VALUES((?),(?),(?),(?),(?))"),
+    GET_BY_ID("user.read.id"),
+    GET_BY_LOGIN("user.read.login"),
+    INSERT("user.create"),
     DELETE(""),
     UPDATE("");
 

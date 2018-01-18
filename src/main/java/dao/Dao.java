@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public interface Dao<Entity, Key> {
@@ -8,4 +9,5 @@ public interface Dao<Entity, Key> {
   void update(Entity model) throws SQLException;
   void delete(Entity model) throws SQLException;
   void close();
+  Connection getConnection();
 }

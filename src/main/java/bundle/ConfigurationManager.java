@@ -13,4 +13,5 @@ public class ConfigurationManager {
   public static String getProperty(String key) {
     return resourceBundle.getString(key);
   }
+
 }

@@ -25,8 +25,32 @@ public enum CommandEnum {
     {
       this.command = new SetLocaleCommand();
     }
-  }
-  ;
+  },
+  ADMINPAGE{
+    {
+      this.command = new AdminPageCommand();
+    }
+  },
+  DELETE_VISIT{
+    {
+      this.command = new DeleteVisitCommand();
+    }
+  },
+  FINISH_VISIT{
+    {
+      this.command = new FinishVisitCommand();
+    }
+  },
+  ADDING_FORM{
+    {
+      this.command = new AddingFormCommand();
+    }
+  },
+  CREATE_VISIT{
+    {
+      this.command = new CreateVisitCommand();
+    }
+  };
   Command command;
 
   public Command getCurrentCommand() {

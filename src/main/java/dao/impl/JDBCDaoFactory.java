@@ -2,6 +2,7 @@ package dao.impl;
 
 import dao.DaoFactory;
 import dao.UserDao;
+import dao.VisitDao;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.sql.DataSource;
@@ -13,6 +14,11 @@ public class JDBCDaoFactory extends DaoFactory {
   @Override
   public UserDao createUserDao() {
     return new JDBCUserDao(getConnection());
+  }
+
+  @Override
+  public VisitDao createVisitDao(){
+    return new JDBCVisitDao(getConnection());
   }
 
 

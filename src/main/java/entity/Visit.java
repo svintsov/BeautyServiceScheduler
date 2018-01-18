@@ -2,28 +2,45 @@ package entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Visit {
 
   private int id;
-  private BeautyServiceType beautyServiceTypeType;
+  private BeautyServiceType beautyServiceType;
   private User master;
   private LocalDate day;
   private LocalTime start;
   private User customer;
   private State state;
+  private String review;
 
-  public Visit(){ }
+  public Visit() {
+  }
 
-  public Visit(int id, BeautyServiceType beautyServiceTypeType, User master, LocalDate day,
-      LocalTime start, User customer, State state) {
+  public Visit(int id, BeautyServiceType beautyServiceType, User master, LocalDate day,
+      LocalTime start, User customer, State state, String review) {
     this.id = id;
-    this.beautyServiceTypeType = beautyServiceTypeType;
+    this.beautyServiceType = beautyServiceType;
     this.master = master;
     this.day = day;
     this.start = start;
     this.customer = customer;
     this.state = state;
+    this.review = review;
+  }
+
+  public String getStringDay(){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+    return this.day.format(formatter);
+  }
+
+  public String getReview() {
+    return review;
+  }
+
+  public void setReview(String review) {
+    this.review = review;
   }
 
   public int getId() {
@@ -34,12 +51,12 @@ public class Visit {
     this.id = id;
   }
 
-  public BeautyServiceType getBeautyServiceTypeType() {
-    return beautyServiceTypeType;
+  public BeautyServiceType getBeautyServiceType() {
+    return beautyServiceType;
   }
 
-  public void setBeautyServiceTypeType(BeautyServiceType beautyServiceTypeType) {
-    this.beautyServiceTypeType = beautyServiceTypeType;
+  public void setBeautyServiceType(BeautyServiceType beautyServiceType) {
+    this.beautyServiceType = beautyServiceType;
   }
 
   public User getMaster() {
@@ -93,36 +110,25 @@ public class Visit {
 
     Visit visit = (Visit) o;
 
-    if (id != visit.id) {
-      return false;
-    }
-    if (beautyServiceTypeType != visit.beautyServiceTypeType) {
-      return false;
-    }
-    if (!master.equals(visit.master)) {
-      return false;
-    }
-    if (!day.equals(visit.day)) {
-      return false;
-    }
-    if (!start.equals(visit.start)) {
-      return false;
-    }
-    if (!customer.equals(visit.customer)) {
-      return false;
-    }
-    return state == visit.state;
+    return id == visit.id;
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + beautyServiceTypeType.hashCode();
-    result = 31 * result + master.hashCode();
-    result = 31 * result + day.hashCode();
-    result = 31 * result + start.hashCode();
-    result = 31 * result + customer.hashCode();
-    result = 31 * result + state.hashCode();
-    return result;
+    return id;
+  }
+
+  @Override
+  public String toString() {
+    return "Visit{" +
+        "id=" + id +
+        ", beautyServiceType=" + beautyServiceType +
+        ", master=" + master +
+        ", day=" + day +
+        ", start=" + start +
+        ", customer=" + customer +
+        ", state=" + state +
+        ", review='" + review + '\'' +
+        '}';
   }
 }

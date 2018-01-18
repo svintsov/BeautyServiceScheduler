@@ -17,60 +17,40 @@ public class LoginCommand implements Command {
 
   @Override
   public String execute(HttpServletRequest request) {
-    String page;
-// извлечение из запроса логина и пароля
+    // извлечение из запроса логина и пароля
     String login = request.getParameter(PARAM_NAME_LOGIN);
     String password = request.getParameter(PARAM_NAME_PASSWORD);
 
+    HttpSession session = request.getSession();
+
     final LoginService loginService = new LoginService();
-
-    final HttpSession session = request.getSession();
-
     //Logged user.
     if (nonNull(session) &&
         nonNull(session.getAttribute("login")) &&
         nonNull(session.getAttribute("password"))) {
 
-      final Role role = (Role) session.getAttribute("role");
-
-      return getMenu(role);
+      return Redirector.getMenu((Role) session.getAttribute("role"), request);
 
     } else {
       try {
+
         final Role role = loginService.getRole(login, password);
         request.getSession().setAttribute("password", password);
         request.getSession().setAttribute("login", login);
         request.getSession().setAttribute("role", role);
-        return getMenu(role);
+        return Redirector.getMenu(role, request);
       } catch (SQLException e) {
         request.setAttribute("errorLoginPassMessage",
             MessageManager.getProperty("message.loginerror"));
-        page = ConfigurationManager.getProperty("path.page.login");
-        return page;
+        return ConfigurationManager.getProperty("path.page.login");
       }
-
-    }
-
-  }
-
-  /**
-   * Move user to menu. If access 'admin' move to admin menu. If access 'user' move to user menu.
-   */
-  private String getMenu(
-      final Role role) {
-
-    if (role.equals(Role.ADMINISTRATOR)) {
-      return ConfigurationManager.getProperty("path.page.admin");
-
-
-    } else if (role.equals(Role.CUSTOMER)) {
-      return ConfigurationManager.getProperty("path.page.main");
-
-    } else if (role.equals(Role.MASTER)) {
-      return ConfigurationManager.getProperty("path.page.master");
-
-    } else {
-      return ConfigurationManager.getProperty("path.page.index");
     }
   }
+
+  private String redirectUser(final HttpServletRequest request, final HttpSession session,
+      final String login, final String password) {
+      return null;
+  }
+
+
 }
