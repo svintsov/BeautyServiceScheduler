@@ -21,9 +21,35 @@ public class LoginCommand implements Command {
     String login = request.getParameter(PARAM_NAME_LOGIN);
     String password = request.getParameter(PARAM_NAME_PASSWORD);
 
-    final HttpSession session = request.getSession();
+    HttpSession session = request.getSession();
 
-    return redirectUser(request, session, login, password);
+    final LoginService loginService = new LoginService();
+    //Logged user.
+    if (nonNull(session) &&
+        nonNull(session.getAttribute("login")) &&
+        nonNull(session.getAttribute("password"))) {
+
+      return getMenu((Role) session.getAttribute("role"), request);
+
+    } else {
+      try {
+
+        final Role role = loginService.getRole(login, password);
+        request.getSession().setAttribute("password", password);
+        request.getSession().setAttribute("login", login);
+        request.getSession().setAttribute("role", role);
+        return getMenu(role, request);
+      } catch (SQLException e) {
+        request.setAttribute("errorLoginPassMessage",
+            MessageManager.getProperty("message.loginerror"));
+        return ConfigurationManager.getProperty("path.page.login");
+      }
+    }
+  }
+
+  private String redirectUser(final HttpServletRequest request, final HttpSession session,
+      final String login, final String password) {
+      return null;
   }
 
   /**
@@ -35,7 +61,6 @@ public class LoginCommand implements Command {
       CommandEnum commandEnum = CommandEnum.ADMINPAGE;
       return commandEnum.getCurrentCommand().execute(request);
 
-
     } else if (role.equals(Role.CUSTOMER)) {
       return ConfigurationManager.getProperty("path.page.main");
 
@@ -44,34 +69,6 @@ public class LoginCommand implements Command {
 
     } else {
       return ConfigurationManager.getProperty("path.page.index");
-    }
-  }
-
-  private String redirectUser(final HttpServletRequest request, final HttpSession session,
-      final String login, final String password) {
-    final LoginService loginService = new LoginService();
-    //Logged user.
-    if (nonNull(session) &&
-        nonNull(session.getAttribute("login")) &&
-        nonNull(session.getAttribute("password"))) {
-
-      final Role role = (Role) session.getAttribute("role");
-
-      return getMenu(role, request);
-
-    } else {
-      try {
-        final Role role = loginService.getRole(login, password);
-        request.getSession().setAttribute("password", password);
-        request.getSession().setAttribute("login", login);
-        request.getSession().setAttribute("role", role);
-        return getMenu(role, request);
-      } catch (SQLException e) {
-        request.setAttribute("errorLoginPassMessage",
-            MessageManager.getProperty("message.loginerror"));
-        return ConfigurationManager.getProperty("path.page.login");
-      }
-
     }
   }
 }

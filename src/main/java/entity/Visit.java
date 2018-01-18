@@ -2,6 +2,7 @@ package entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Visit {
 
@@ -27,6 +28,11 @@ public class Visit {
     this.customer = customer;
     this.state = state;
     this.review = review;
+  }
+
+  public String getStringDay(){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+    return this.day.format(formatter);
   }
 
   public String getReview() {

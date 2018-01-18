@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public class LoginService {
 
   private DaoFactory factory = DaoFactory.getInstance();
-  private AtomicReference<UserDao> dao = new AtomicReference<>(factory.createUserDao());
+  AtomicReference<UserDao> dao = new AtomicReference<>(factory.createUserDao());
 
   public Role getRole(String enterLogin, String enterPass) throws SQLException {
     Connection connection = dao.get().getConnection();

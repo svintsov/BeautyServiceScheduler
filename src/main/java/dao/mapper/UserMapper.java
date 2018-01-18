@@ -20,6 +20,7 @@ public class UserMapper implements ObjectMapper<User> {
     this.ID="idusers";
     this.LOGIN="login";
     this.PASSWORD="password";
+    this.FULL_NAME="full_name";
     this.EMAIL="email";
     this.TYPE="type";
   }
