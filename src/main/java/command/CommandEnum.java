@@ -30,6 +30,11 @@ public enum CommandEnum {
     {
       this.command = new AdminPageCommand();
     }
+  },
+  DELETE_VISIT{
+    {
+      this.command = new DeleteVisitCommand();
+    }
   };
   Command command;
 

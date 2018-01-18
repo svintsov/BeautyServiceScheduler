@@ -29,7 +29,7 @@ public class LoginCommand implements Command {
         nonNull(session.getAttribute("login")) &&
         nonNull(session.getAttribute("password"))) {
 
-      return getMenu((Role) session.getAttribute("role"), request);
+      return Redirector.getMenu((Role) session.getAttribute("role"), request);
 
     } else {
       try {
@@ -38,7 +38,7 @@ public class LoginCommand implements Command {
         request.getSession().setAttribute("password", password);
         request.getSession().setAttribute("login", login);
         request.getSession().setAttribute("role", role);
-        return getMenu(role, request);
+        return Redirector.getMenu(role, request);
       } catch (SQLException e) {
         request.setAttribute("errorLoginPassMessage",
             MessageManager.getProperty("message.loginerror"));
@@ -52,23 +52,5 @@ public class LoginCommand implements Command {
       return null;
   }
 
-  /**
-   * Move user to menu. If access 'admin' move to admin menu. If access 'user' move to user menu.
-   */
-  private String getMenu(final Role role, final HttpServletRequest request) {
 
-    if (role.equals(Role.ADMINISTRATOR)) {
-      CommandEnum commandEnum = CommandEnum.ADMINPAGE;
-      return commandEnum.getCurrentCommand().execute(request);
-
-    } else if (role.equals(Role.CUSTOMER)) {
-      return ConfigurationManager.getProperty("path.page.main");
-
-    } else if (role.equals(Role.MASTER)) {
-      return ConfigurationManager.getProperty("path.page.master");
-
-    } else {
-      return ConfigurationManager.getProperty("path.page.index");
-    }
-  }
 }
