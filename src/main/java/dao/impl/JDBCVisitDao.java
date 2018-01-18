@@ -66,15 +66,23 @@ public class JDBCVisitDao implements VisitDao {
   @Override
   public void deleteAll() throws SQLException {
     try(Statement st = connection.createStatement()){
-      st.executeUpdate(SQLVisit.SAFE_OFF.QUERY);
-      st.executeUpdate(SQLVisit.DELETE_ALL.QUERY);
-      st.executeUpdate(SQLVisit.SAFE_ON.QUERY);
+      st.executeUpdate(SQLQueryManager.getProperty(SQLVisit.SAFE_OFF.QUERY));
+      st.executeUpdate(SQLQueryManager.getProperty(SQLVisit.DELETE_ALL.QUERY));
+      st.executeUpdate(SQLQueryManager.getProperty(SQLVisit.SAFE_ON.QUERY));
+    }
+  }
+
+  @Override
+  public void delete(int id) throws SQLException {
+    try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.DELETE.QUERY))){
+      st.setInt(1,id);
+      st.executeUpdate();
     }
   }
 
   @Override
   public void update(Visit visit, State state) throws SQLException {
-    try(PreparedStatement st = connection.prepareStatement(SQLVisit.UPDATE_STATE.QUERY)){
+    try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.UPDATE_STATE.QUERY))){
       st.setString(1,state.toString());
       st.setInt(2,visit.getId());
       st.executeUpdate();
@@ -139,7 +147,7 @@ public class JDBCVisitDao implements VisitDao {
     READ("visit.read.id"),
     READ_ALL("visit.read.all"),
     INSERT(""),
-    DELETE(""),
+    DELETE("visit.delete.id"),
     DELETE_ALL("visit.delete.all"),
     UPDATE_STATE("visit.update.state"),
     UPDATE_CUSTOMER("visit.update.customer"),

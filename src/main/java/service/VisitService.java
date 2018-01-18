@@ -9,14 +9,18 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class VisitService {
-  AtomicReference<VisitDao> dao = new AtomicReference<>(DaoFactory.getInstance().createVisitDao());
+  private final AtomicReference<VisitDao> dao = new AtomicReference<>(DaoFactory.getInstance().createVisitDao());
+  private final Connection connection = dao.get().getConnection();
 
   public List<Visit> getAllVisits() throws SQLException{
-    Connection connection = dao.get().getConnection();
     connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
     List<Visit> result = dao.get().findAll();
     connection.close();
     return result;
+  }
+
+  public void deleteByID(int id) throws SQLException{
+
   }
 
 }
