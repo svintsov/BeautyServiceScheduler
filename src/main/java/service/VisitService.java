@@ -10,17 +10,25 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class VisitService {
   private final AtomicReference<VisitDao> dao = new AtomicReference<>(DaoFactory.getInstance().createVisitDao());
-  private final Connection connection = dao.get().getConnection();
 
   public List<Visit> getAllVisits() throws SQLException{
+    final Connection connection = dao.get().getConnection();
     connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
     List<Visit> result = dao.get().findAll();
-    connection.close();
     return result;
   }
 
   public void deleteByID(int id) throws SQLException{
-
+    final Connection connection = dao.get().getConnection();
+    connection.setAutoCommit(false);
+    try {
+      dao.get().delete(id);
+      connection.commit();
+      connection.setAutoCommit(true);
+    } catch (SQLException e){
+      connection.rollback();
+      throw new SQLException();
+    }
   }
 
 }

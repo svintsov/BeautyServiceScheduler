@@ -43,6 +43,13 @@
             <td>
                 <c:out value="${visit.review}" default="null"/>
             </td>
+            <td>
+                <form name="visit_element" method="POST" action="controller">
+                    <input type="hidden" name="command" value="delete_visit" />
+                    <input type="hidden" name="idvisit" value="${visit.id}" />
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
         </tr>
     </c:forEach>
 </table>
