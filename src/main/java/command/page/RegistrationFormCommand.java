@@ -1,6 +1,7 @@
-package command;
+package command.page;
 
 import bundle.ConfigurationManager;
+import command.Command;
 import javax.servlet.http.HttpServletRequest;
 
 public class RegistrationFormCommand implements Command {

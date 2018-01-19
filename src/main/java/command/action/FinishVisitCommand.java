@@ -1,5 +1,7 @@
-package command;
+package command.action;
 
+import command.Command;
+import command.Redirector;
 import entity.Role;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
@@ -7,11 +9,9 @@ import service.VisitService;
 
 public class FinishVisitCommand implements Command {
 
-  private  final VisitService visitService = new VisitService();
-
   @Override
-  public String execute(HttpServletRequest request) {
-
+  public String execute(final HttpServletRequest request) {
+    final VisitService visitService = new VisitService();
     try {
       visitService.updateStateByID(Integer.valueOf(request.getParameter("idvisit")));
     } catch (SQLException e) {

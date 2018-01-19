@@ -1,7 +1,8 @@
-package command;
+package command.action;
 
 import bundle.ConfigurationManager;
 import bundle.MessageManager;
+import command.Command;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import service.SignUpService;
@@ -11,18 +12,18 @@ public class SignUpCommand implements Command {
 
   private static final String PARAM_NAME_LOGIN = "login";
   private static final String PARAM_NAME_PASSWORD = "password";
-  public static final String PARAM_NAME_EMAIL = "email";
-  public static final String PARAM_NAME_FULL_NAME = "full name";
+  private static final String PARAM_NAME_EMAIL = "email";
+  private static final String PARAM_NAME_FULL_NAME = "full name";
 
   @Override
-  public String execute(HttpServletRequest request) {
+  public String execute(final HttpServletRequest request) {
 
-    String login = request.getParameter(PARAM_NAME_LOGIN);
-    String password = request.getParameter(PARAM_NAME_PASSWORD);
-    String email = request.getParameter(PARAM_NAME_EMAIL);
-    String fullName = request.getParameter(PARAM_NAME_FULL_NAME);
+    final String login = request.getParameter(PARAM_NAME_LOGIN);
+    final String password = request.getParameter(PARAM_NAME_PASSWORD);
+    final String email = request.getParameter(PARAM_NAME_EMAIL);
+    final String fullName = request.getParameter(PARAM_NAME_FULL_NAME);
 
-    SignUpService signUpService = new SignUpService();
+    final SignUpService signUpService = new SignUpService();
 
     try {
       signUpService.register(login,password,email,fullName);

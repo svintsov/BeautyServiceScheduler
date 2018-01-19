@@ -4,8 +4,12 @@ import dao.DaoFactory;
 import dao.VisitDao;
 import entity.State;
 import entity.Visit;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +53,8 @@ public class VisitService {
     }
   }
 
-  public void createVisit(Map<String,String> visit) throws SQLException{
+  public void createVisit(Map<String,String> visit) throws SQLException,IOException{
+    if (isDateInPast(visit.get("day"))) throw new IOException();
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     final Connection connection = dao.getConnection();
     connection.setAutoCommit(false);
@@ -63,6 +68,17 @@ public class VisitService {
       throw new SQLException();
     }
 
+  }
+
+  private boolean isDateInPast(String date){
+    try {
+      if (new SimpleDateFormat("yyyy-mm-dd").parse(date).before(new Date())) {
+        return true;
+      }
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    return false;
   }
 
 }
