@@ -30,6 +30,7 @@
         </select><br/>
         Customer ID
         <select name="customer">
+            <option value="-1">Empty</option>
             <c:forEach var="customer" items="${requestScope.customers}">
                 <option value="${customer.getId()}"><c:out value="${customer.getId()}"/></option>
             </c:forEach>

@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -111,7 +112,11 @@ public class JDBCVisitDao implements VisitDao {
       st.setString(3,bundle.get("states_select"));
       st.setInt(4,Integer.valueOf(bundle.get("services_select")));
       st.setInt(5,Integer.valueOf(bundle.get("master")));
-      st.setInt(6,Integer.valueOf(bundle.get("customer")));
+      if (bundle.get("customer").equals("-1")){
+        st.setNull(6, Types.INTEGER);
+      } else {
+        st.setInt(6,Integer.valueOf(bundle.get("customer")));
+      }
       st.executeUpdate();
     }
   }
