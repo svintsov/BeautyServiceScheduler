@@ -8,65 +8,59 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class VisitService {
 
   public List<Visit> getAllVisits() throws SQLException{
-    final AtomicReference<VisitDao> dao = new AtomicReference<>(DaoFactory.getInstance().createVisitDao());
-    dao.get().getConnection().setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
-    List<Visit> result = dao.get().findAll();
+    final VisitDao dao = DaoFactory.getInstance().createVisitDao();
+    dao.getConnection().setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+    final List<Visit> result = dao.findAll();
+    dao.close();
     return result;
   }
 
   public void deleteByID(int id) throws SQLException{
-    final AtomicReference<VisitDao> dao = new AtomicReference<>(DaoFactory.getInstance().createVisitDao());
-    final Connection connection = dao.get().getConnection();
-    connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+    final VisitDao dao = DaoFactory.getInstance().createVisitDao();
+    final Connection connection = dao.getConnection();
     connection.setAutoCommit(false);
     try {
-      dao.get().delete(id);
+      dao.delete(id);
       connection.commit();
-      connection.setAutoCommit(true);
+      dao.close();
     } catch (SQLException e){
       connection.rollback();
+      dao.close();
       throw new SQLException();
-    } finally {
-      connection.close();
     }
   }
 
   public void updateStateByID(int id) throws SQLException{
-    final AtomicReference<VisitDao> dao = new AtomicReference<>(DaoFactory.getInstance().createVisitDao());
-    final Connection connection = dao.get().getConnection();
-    connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+    final VisitDao dao = DaoFactory.getInstance().createVisitDao();
+    final Connection connection = dao.getConnection();
     connection.setAutoCommit(false);
     try {
-      dao.get().update(id, State.DONE);
+      dao.update(id, State.DONE);
       connection.commit();
-      connection.setAutoCommit(true);
+      dao.close();
     } catch (SQLException e){
       connection.rollback();
+      dao.close();
       throw new SQLException();
-    } finally {
-      connection.close();
     }
   }
 
   public void createVisit(Map<String,String> visit) throws SQLException{
-    final AtomicReference<VisitDao> dao = new AtomicReference<>(DaoFactory.getInstance().createVisitDao());
-    final Connection connection = dao.get().getConnection();
-    connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+    final VisitDao dao = DaoFactory.getInstance().createVisitDao();
+    final Connection connection = dao.getConnection();
     connection.setAutoCommit(false);
     try {
-      dao.get().create(visit);
+      dao.create(visit);
       connection.commit();
-      connection.setAutoCommit(true);
+      dao.close();
     } catch (SQLException e){
       connection.rollback();
+      dao.close();
       throw new SQLException();
-    } finally {
-      connection.close();
     }
 
   }

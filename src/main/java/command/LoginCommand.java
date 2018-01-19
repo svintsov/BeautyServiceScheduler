@@ -4,6 +4,7 @@ import static java.util.Objects.nonNull;
 
 import bundle.ConfigurationManager;
 import bundle.MessageManager;
+import com.sun.istack.internal.NotNull;
 import entity.Role;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,40 +18,36 @@ public class LoginCommand implements Command {
 
   @Override
   public String execute(HttpServletRequest request) {
-    // извлечение из запроса логина и пароля
-    String login = request.getParameter(PARAM_NAME_LOGIN);
-    String password = request.getParameter(PARAM_NAME_PASSWORD);
 
-    HttpSession session = request.getSession();
+    final String login = request.getParameter(PARAM_NAME_LOGIN);
+    final String password = request.getParameter(PARAM_NAME_PASSWORD);
 
-    final LoginService loginService = new LoginService();
+    final HttpSession session = request.getSession();
     //Logged user.
     if (nonNull(session) &&
         nonNull(session.getAttribute("login")) &&
         nonNull(session.getAttribute("password"))) {
 
       return Redirector.getMenu((Role) session.getAttribute("role"), request);
+    }
+    return getRedirect(request, session, login, password);
 
-    } else {
-      try {
+  }
 
-        final Role role = loginService.getRole(login, password);
-        request.getSession().setAttribute("password", password);
-        request.getSession().setAttribute("login", login);
-        request.getSession().setAttribute("role", role);
-        return Redirector.getMenu(role, request);
-      } catch (SQLException e) {
-        request.setAttribute("errorLoginPassMessage",
-            MessageManager.getProperty("message.loginerror"));
-        return ConfigurationManager.getProperty("path.page.login");
-      }
+  private String getRedirect(final HttpServletRequest request, @NotNull final HttpSession session,
+      String login, String password) {
+    try {
+      final LoginService loginService = new LoginService();
+      final Role role = loginService.getRole(login, password);
+      session.setAttribute("password", password);
+      session.setAttribute("login", login);
+      session.setAttribute("role", role);
+      return Redirector.getMenu(role, request);
+    } catch (SQLException e) {
+      request.setAttribute("errorLoginPassMessage",
+          MessageManager.getProperty("message.loginerror"));
+      return ConfigurationManager.getProperty("path.page.login");
     }
   }
-
-  private String redirectUser(final HttpServletRequest request, final HttpSession session,
-      final String login, final String password) {
-      return null;
-  }
-
 
 }
