@@ -27,15 +27,14 @@ public class Controller extends HttpServlet {
   private void processRequest(HttpServletRequest request,
       HttpServletResponse response)
       throws ServletException, IOException {
-    String page = null;
 // определение команды, пришедшей из JSP
-    CommandFactory client = new CommandFactory();
-    Command command = client.defineCommand(request);
+    final CommandFactory client = new CommandFactory();
+    final Command command = client.defineCommand(request);
     /*
      * вызов реализованного метода execute() и передача параметров
      * классу-обработчику конкретной команды
      */
-    page = command.execute(request);
+    String page = command.execute(request);
 // метод возвращает страницу ответа
 // page = null; // поэксперементировать!
     if (page != null) {

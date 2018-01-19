@@ -14,16 +14,26 @@
             <option value="3">PEDICURE</option>
             <option value="4">REFLEXOLOGY</option>
         </select><br/>
-        <label><input name="day" type="date" required placeholder="Day"></label>Day<br/>
-        <label><input name="hour" type="time" required placeholder="Time"></label>Hour<br/>
-        <label><input name="customer" type="number" required placeholder="Customer ID"></label>Customer ID<br/>
-        <label><input name="master" type="number" required placeholder="Master ID"></label>Master ID<br/>
+        Day of visit:<label><input name="day" type="date" required placeholder="Day"></label><br/>
+        Time: <label><input name="hour" type="time" required placeholder="Time"></label><br/>
         States
         <select name="states_select" required>
             <option value="FREE">FREE</option>
             <option value="AGREED">AGREED</option>
             <option value="DONE">DONE</option>
         </select><br/>
+        Master ID
+        <select name="master">
+            <c:forEach var="master" items="${requestScope.masters}">
+                <option value="${master.getId()}"><c:out value="${master.getId()}"/></option>
+            </c:forEach>
+        </select><br/>
+        Customer ID
+        <select name="customer">
+            <c:forEach var="customer" items="${requestScope.customers}">
+                <option value="${customer.getId()}"><c:out value="${customer.getId()}"/></option>
+            </c:forEach>
+        </select></br>
         <input type="submit" value="Create"/>
         <br/>
         ${errorCreateVisitMessage}
