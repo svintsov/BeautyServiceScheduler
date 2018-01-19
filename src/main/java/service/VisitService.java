@@ -7,6 +7,7 @@ import entity.Visit;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class VisitService {
@@ -52,7 +53,21 @@ public class VisitService {
     }
   }
 
-  public void createVisit(Visit visit) throws SQLException{
+  public void createVisit(Map<String,String> visit) throws SQLException{
+    final AtomicReference<VisitDao> dao = new AtomicReference<>(DaoFactory.getInstance().createVisitDao());
+    final Connection connection = dao.get().getConnection();
+    connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+    connection.setAutoCommit(false);
+    try {
+      dao.get().create(visit);
+      connection.commit();
+      connection.setAutoCommit(true);
+    } catch (SQLException e){
+      connection.rollback();
+      throw new SQLException();
+    } finally {
+      connection.close();
+    }
 
   }
 

@@ -10,10 +10,12 @@ import entity.State;
 import entity.User;
 import entity.Visit;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,6 +101,22 @@ public class JDBCVisitDao implements VisitDao {
   }
 
   @Override
+  public void create(Map<String, String> bundle) throws SQLException {
+    try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.INSERT.QUERY))){
+      SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+      Date date = Date.valueOf(bundle.get("day"));
+      formatter.format(date);
+      st.setDate(1,new java.sql.Date(date.getTime()));
+      st.setString(2,bundle.get("hour"));
+      st.setString(3,bundle.get("states_select"));
+      st.setInt(4,Integer.valueOf(bundle.get("services_select")));
+      st.setInt(5,Integer.valueOf(bundle.get("master")));
+      st.setInt(6,Integer.valueOf(bundle.get("customer")));
+      st.executeUpdate();
+    }
+  }
+
+  @Override
   public void create(Visit model) throws SQLException {
 
   }
@@ -146,7 +164,7 @@ public class JDBCVisitDao implements VisitDao {
   enum SQLVisit {
     READ("visit.read.id"),
     READ_ALL("visit.read.all"),
-    INSERT(""),
+    INSERT("visit.create"),
     DELETE("visit.delete.id"),
     DELETE_ALL("visit.delete.all"),
     UPDATE_STATE("visit.update.state"),

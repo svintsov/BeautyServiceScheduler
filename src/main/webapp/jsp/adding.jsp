@@ -9,18 +9,18 @@
     <form name="adding_visit" method="post" action="controller">
         <input type="hidden" name="command" value="create_visit"/>
         Services
-        <select name="services_select">
-            <option value="AROMATHERAPY">AROMATHERAPY</option>
-            <option value="MANICURE">MANICURE</option>
-            <option value="PEDICURE">PEDICURE</option>
-            <option value="REFLEXOLOGY">REFLEXOLOGY</option>
+        <select name="services_select" required>
+            <option value="1">AROMATHERAPY</option>
+            <option value="2">MANICURE</option>
+            <option value="3">PEDICURE</option>
+            <option value="4">REFLEXOLOGY</option>
         </select><br/>
-        <label><input name="day" type="date"></label>Day<br/>
-        <label><input name="hour" type="time"></label>Hour<br/>
-        <label><input name="customer" type="number"></label>Customer ID<br/>
-        <label><input name="master" type="number"></label>Master ID<br/>
+        <label><input name="day" type="date" required placeholder="Day"></label>Day<br/>
+        <label><input name="hour" type="time" required placeholder="Time"></label>Hour<br/>
+        <label><input name="customer" type="number" required placeholder="Customer ID"></label>Customer ID<br/>
+        <label><input name="master" type="number" required placeholder="Master ID"></label>Master ID<br/>
         States
-        <select name="states_select">
+        <select name="states_select" required>
             <option value="FREE">FREE</option>
             <option value="AGREED">AGREED</option>
             <option value="DONE">DONE</option>
