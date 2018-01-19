@@ -16,10 +16,10 @@ public class CreateVisitCommand implements Command {
 
   private static final String PARAM_NAME_SERVICE = "services_select";
   private static final String PARAM_NAME_DAY = "day";
-  public static final String PARAM_NAME_HOUR = "hour";
-  public static final String PARAM_NAME_CUSTOMER = "customer";
-  public static final String PARAM_NAME_MASTER = "master";
-  public static final String PARAM_NAME_STATE = "states_select";
+  private static final String PARAM_NAME_HOUR = "hour";
+  private static final String PARAM_NAME_CUSTOMER = "customer";
+  private static final String PARAM_NAME_MASTER = "master";
+  private static final String PARAM_NAME_STATE = "states_select";
 
   private final VisitService visitService = new VisitService();
 
@@ -43,7 +43,7 @@ public class CreateVisitCommand implements Command {
 
   private Map<String,String> retrieveVisit(HttpServletRequest request){
 
-    Map<String, String> map = new HashMap<>();
+    final Map<String, String> map = new HashMap<>();
 
     map.put(PARAM_NAME_SERVICE,request.getParameter(PARAM_NAME_SERVICE));
     map.put(PARAM_NAME_DAY,request.getParameter(PARAM_NAME_DAY));

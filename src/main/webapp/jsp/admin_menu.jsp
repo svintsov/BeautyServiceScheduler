@@ -60,6 +60,9 @@
         </tr>
     </c:forEach>
 </table>
+    <br/>
+    ${errorMessage}
+    <br/>
     <a href="controller?command=logout">Logout</a>
     <a href="controller?command=adding_form">Add Visit</a>
 </body>

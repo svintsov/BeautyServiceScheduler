@@ -41,7 +41,10 @@ public class VisitService {
   public void updateStateByID(int id) throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     final Connection connection = dao.getConnection();
+    connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
     connection.setAutoCommit(false);
+    final Visit visit = dao.read(id);
+    if (visit.getState().equals(State.FREE) || visit.getState().equals(State.DONE)) throw new SQLException("message.visit.done_error");
     try {
       dao.update(id, State.DONE);
       connection.commit();
@@ -49,7 +52,7 @@ public class VisitService {
     } catch (SQLException e){
       connection.rollback();
       dao.close();
-      throw new SQLException();
+      throw new SQLException("message.visit.update_state_error");
     }
   }
 

@@ -1,5 +1,6 @@
 package command.action;
 
+import bundle.MessageManager;
 import command.Command;
 import command.Redirector;
 import entity.Role;
@@ -14,8 +15,9 @@ public class FinishVisitCommand implements Command {
     final VisitService visitService = new VisitService();
     try {
       visitService.updateStateByID(Integer.valueOf(request.getParameter("idvisit")));
+      request.setAttribute("errorMessage","");
     } catch (SQLException e) {
-      e.printStackTrace();
+      request.setAttribute("errorMessage", MessageManager.getProperty(e.getMessage()));
     }
     return Redirector.getMenu((Role)request.getSession().getAttribute("role"),request);
   }
