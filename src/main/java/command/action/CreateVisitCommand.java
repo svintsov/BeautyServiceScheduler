@@ -1,8 +1,8 @@
 package command.action;
 
-import bundle.ConfigurationManager;
 import bundle.MessageManager;
 import command.Command;
+import command.CommandEnum;
 import command.Redirector;
 import entity.Role;
 import java.io.IOException;
@@ -31,11 +31,11 @@ public class CreateVisitCommand implements Command {
     } catch (SQLException e) {
       request.setAttribute("errorCreateVisitMessage",
           MessageManager.getProperty("message.visit.creation_error"));
-      return ConfigurationManager.getProperty("path.page.adding");
+      return CommandEnum.ADDING_FORM.getCurrentCommand().execute(request);
     } catch (IOException e) {
       request.setAttribute("errorCreateVisitMessage",
           MessageManager.getProperty("message.visit.invalid_input.date"));
-      return ConfigurationManager.getProperty("path.page.adding");
+      return CommandEnum.ADDING_FORM.getCurrentCommand().execute(request);
     }
 
     return Redirector.getMenu((Role)request.getSession().getAttribute("role"),request);
