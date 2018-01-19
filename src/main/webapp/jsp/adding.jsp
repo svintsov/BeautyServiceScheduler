@@ -25,7 +25,10 @@
             <option value="AGREED">AGREED</option>
             <option value="DONE">DONE</option>
         </select><br/>
-    <input type="submit" value="Create"/>
+        <input type="submit" value="Create"/>
+        <br/>
+        ${errorCreateVisitMessage}
+        <br/>
     </form>
 </body>
 </html>

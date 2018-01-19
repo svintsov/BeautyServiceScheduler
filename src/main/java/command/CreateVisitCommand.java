@@ -1,5 +1,6 @@
 package command;
 
+import bundle.MessageManager;
 import entity.Role;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -24,7 +25,8 @@ public class CreateVisitCommand implements Command {
     try {
       visitService.createVisit(retrieveVisit(request));
     } catch (SQLException e) {
-      e.printStackTrace();
+      request.setAttribute("errorCreateVisitMessage",
+          MessageManager.getProperty("message.visitcreationerror"));
     }
 
     return Redirector.getMenu((Role)request.getSession().getAttribute("role"),request);
