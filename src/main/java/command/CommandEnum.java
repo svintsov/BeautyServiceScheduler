@@ -42,6 +42,11 @@ public enum CommandEnum {
       this.command = new AdminPageCommand();
     }
   },
+  MASTERPAGE{
+    {
+      this.command = new MasterPageCommand();
+    }
+  },
   DELETE_VISIT{
     {
       this.command = new DeleteVisitCommand();
