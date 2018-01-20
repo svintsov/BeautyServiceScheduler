@@ -3,11 +3,14 @@ package dao.impl;
 import bundle.SQLQueryManager;
 import dao.UserDao;
 import dao.mapper.UserMapper;
+import entity.Role;
 import entity.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JDBCUserDao implements UserDao {
 
@@ -67,6 +70,20 @@ public class JDBCUserDao implements UserDao {
   }
 
   @Override
+  public List<User> findAll(Role role) throws SQLException {
+    try(PreparedStatement statement = connection.prepareStatement(SQLQueryManager.getProperty(SQLUser.GET_ALL_BY_ROLE.QUERY))){
+      statement.setString(1,role.toString());
+      final ResultSet rs = statement.executeQuery();
+      List<User> result = new ArrayList<>();
+      while(rs.next()){
+        result.add(mapper.extractFromResultSet(rs));
+      }
+      return result;
+    }
+
+  }
+
+  @Override
   public void update(User model) throws SQLException {
 
   }
@@ -90,6 +107,7 @@ public class JDBCUserDao implements UserDao {
   enum SQLUser {
     GET_BY_ID("user.read.id"),
     GET_BY_LOGIN("user.read.login"),
+    GET_ALL_BY_ROLE("user.read.all.role"),
     INSERT("user.create"),
     DELETE(""),
     UPDATE("");

@@ -1,6 +1,7 @@
-package command;
+package command.action;
 
 import bundle.ConfigurationManager;
+import command.Command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
@@ -11,7 +12,6 @@ public class SetLocaleCommand implements Command {
   @Override
   public String execute(HttpServletRequest request) {
     final HttpSession session = request.getSession();
-
 
     final Logger logger = LogManager.getRootLogger();
 

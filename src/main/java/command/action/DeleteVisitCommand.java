@@ -1,5 +1,7 @@
-package command;
+package command.action;
 
+import command.Command;
+import command.Redirector;
 import entity.Role;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;

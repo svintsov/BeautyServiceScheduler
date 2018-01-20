@@ -1,5 +1,16 @@
 package command;
 
+import command.action.CreateVisitCommand;
+import command.action.DeleteVisitCommand;
+import command.action.FinishVisitCommand;
+import command.action.LoginCommand;
+import command.action.LogoutCommand;
+import command.action.SetLocaleCommand;
+import command.action.SignUpCommand;
+import command.page.AddingFormCommand;
+import command.page.AdminPageCommand;
+import command.page.RegistrationFormCommand;
+
 public enum CommandEnum {
   LOGIN {
     {
@@ -29,6 +40,11 @@ public enum CommandEnum {
   ADMINPAGE{
     {
       this.command = new AdminPageCommand();
+    }
+  },
+  MASTERPAGE{
+    {
+      this.command = new MasterPageCommand();
     }
   },
   DELETE_VISIT{

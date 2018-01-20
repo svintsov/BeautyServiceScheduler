@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Admin Page</title>
 </head>
 <body>
     <p>Hello,Admin</p>
@@ -32,7 +32,7 @@
                 <c:out value="${visit.start.toString()}"/>
             </td>
             <td>
-                <c:out value="${visit.customer.getId()}" default="null"/>
+                <c:out value="${visit.customer.getId()}" default=""/>
             </td>
             <td>
                 <c:out value="${visit.master.getId()}"/>
@@ -41,7 +41,7 @@
                 <c:out value="${visit.state}"/>
             </td>
             <td>
-                <c:out value="${visit.review}" default="null"/>
+                <c:out value="${visit.review}" default=""/>
             </td>
             <td>
                 <form name="visit_element_delete" method="POST" action="controller">
@@ -60,6 +60,9 @@
         </tr>
     </c:forEach>
 </table>
+    <br/>
+    ${errorMessage}
+    <br/>
     <a href="controller?command=logout">Logout</a>
     <a href="controller?command=adding_form">Add Visit</a>
 </body>

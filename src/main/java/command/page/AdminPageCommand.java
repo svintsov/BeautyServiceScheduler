@@ -1,6 +1,7 @@
-package command;
+package command.page;
 
 import bundle.ConfigurationManager;
+import command.Command;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import service.VisitService;

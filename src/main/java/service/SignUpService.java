@@ -6,26 +6,23 @@ import entity.Role;
 import entity.User;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class SignUpService {
-  private final AtomicReference<UserDao> dao = new AtomicReference<>(DaoFactory.getInstance().createUserDao());
 
   public void register(String login, String password, String email, String fullName) throws  SQLException{
 
-    Connection connection = dao.get().getConnection();
+    final UserDao dao = DaoFactory.getInstance().createUserDao();
+    final Connection connection = dao.getConnection();
     connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
     connection.setAutoCommit(false);
-    User user = dao.get().read(login);
+    User user = dao.read(login);
     if (!isExist(user)){
-      dao.get().create(new User(login,password,email,fullName, Role.CUSTOMER));
+      dao.create(new User(login,password,email,fullName, Role.CUSTOMER));
       connection.commit();
-      connection.setAutoCommit(true);
-      connection.close();
+      dao.close();
     } else {
       connection.rollback();
-      connection.setAutoCommit(true);
-      connection.close();
+      dao.close();
       throw new SQLException();
     }
 

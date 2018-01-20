@@ -5,6 +5,7 @@ import entity.User;
 import entity.Visit;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 public interface VisitDao extends Dao<Visit,Integer> {
   List<Visit> findAll() throws SQLException;
@@ -12,4 +13,5 @@ public interface VisitDao extends Dao<Visit,Integer> {
   void delete(int id) throws SQLException;
   void update(int id, State state) throws SQLException;
   void update(int id, User customer) throws SQLException;
+  void create(Map<String,String> bundle) throws SQLException;
 }
