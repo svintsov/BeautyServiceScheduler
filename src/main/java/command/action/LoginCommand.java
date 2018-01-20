@@ -8,6 +8,7 @@ import com.sun.istack.internal.NotNull;
 import command.Command;
 import command.Redirector;
 import entity.Role;
+import entity.User;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,10 +41,12 @@ public class LoginCommand implements Command {
       final String login, final String password) {
     try {
       final LoginService loginService = new LoginService();
-      final Role role = loginService.getRole(login, password);
+      final User user = loginService.getUserByLogin(login, password);
+      final Role role = user.getRole();
       session.setAttribute("password", password);
       session.setAttribute("login", login);
       session.setAttribute("role", role);
+      session.setAttribute("iduser", user.getId());
       return Redirector.getMenu(role, request);
     } catch (SQLException e) {
       request.setAttribute("errorLoginPassMessage",
