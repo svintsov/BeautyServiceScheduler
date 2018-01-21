@@ -2,6 +2,7 @@ package service;
 
 import dao.DaoFactory;
 import dao.VisitDao;
+import entity.Role;
 import entity.State;
 import entity.Visit;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class VisitService {
 
@@ -23,7 +25,20 @@ public class VisitService {
     return result;
   }
 
-  public void deleteByID(int id) throws SQLException{
+  public List<Visit> getAllVisitsForUser(final int id, final Role role) throws SQLException{
+    final VisitDao dao = DaoFactory.getInstance().createVisitDao();
+    dao.getConnection().setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+    final List<Visit> result = dao.findAll();
+    if (role.equals(Role.MASTER)){
+      return result.stream().filter(v -> v.getMaster().getId()==id).collect(Collectors.toList());
+    } else if (role.equals(Role.CUSTOMER)) {
+      return result.stream().filter(v -> v.getCustomer().getId()==id).collect(Collectors.toList());
+    } else {
+      return result;
+    }
+  }
+
+  public void deleteByID(final int id) throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     final Connection connection = dao.getConnection();
     connection.setAutoCommit(false);
@@ -38,7 +53,7 @@ public class VisitService {
     }
   }
 
-  public void updateStateByID(int id) throws SQLException{
+  public void updateStateByID(final int id) throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     final Connection connection = dao.getConnection();
     connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
@@ -56,7 +71,7 @@ public class VisitService {
     }
   }
 
-  public void createVisit(Map<String,String> visit) throws SQLException,IOException{
+  public void createVisit(final Map<String,String> visit) throws SQLException,IOException{
     if (isDateInPast(visit.get("day"))) throw new IOException();
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     final Connection connection = dao.getConnection();
@@ -73,7 +88,7 @@ public class VisitService {
 
   }
 
-  private boolean isDateInPast(String date){
+  private boolean isDateInPast(final String date){
     try {
       if (new SimpleDateFormat("yyyy-mm-dd").parse(date).before(new Date())) {
         return true;
