@@ -6,6 +6,7 @@ import dao.mapper.CustomerMapper;
 import dao.mapper.MasterMapper;
 import dao.mapper.UserMapper;
 import dao.mapper.VisitMapper;
+import entity.Role;
 import entity.State;
 import entity.User;
 import entity.Visit;
@@ -65,6 +66,7 @@ public class JDBCVisitDao implements VisitDao {
       return new ArrayList<>(visits.values());
     }
   }
+
 
   @Override
   public void deleteAll() throws SQLException {

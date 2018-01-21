@@ -9,6 +9,7 @@ import command.action.SetLocaleCommand;
 import command.action.SignUpCommand;
 import command.page.AddingFormCommand;
 import command.page.AdminPageCommand;
+import command.page.MasterPageCommand;
 import command.page.RegistrationFormCommand;
 
 public enum CommandEnum {
