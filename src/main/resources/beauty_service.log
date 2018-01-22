@@ -153,3 +153,4 @@
 2018-01-22 20:14:16.055 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
 2018-01-22 20:14:34.556 [http-nio-8080-exec-10] INFO   - ua
 2018-01-22 20:14:35.327 [http-nio-8080-exec-1] INFO   - eng
+2018-01-22 20:17:50.714 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
