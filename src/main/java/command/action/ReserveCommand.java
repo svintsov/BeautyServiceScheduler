@@ -1,24 +1,25 @@
 package command.action;
 
 import bundle.MessageManager;
-import command.Command;
 import command.Redirector;
 import entity.Role;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import service.VisitService;
 
-public class FinishVisitCommand implements Command {
+public class ReserveCommand implements command.Command {
 
   @Override
-  public String execute(final HttpServletRequest request) {
+  public String execute(HttpServletRequest request) {
     final VisitService visitService = new VisitService();
     try {
-      visitService.finishVisitByID(Integer.valueOf(request.getParameter("idvisit")));
-      request.setAttribute("errorMessage","");
+      visitService.reserveVisitByID(Integer.valueOf(request.getParameter("idvisit")),
+          (Integer) request.getSession().getAttribute("iduser"));
+      request.setAttribute("errorMessage", "");
     } catch (SQLException e) {
       request.setAttribute("errorMessage", MessageManager.getProperty(e.getMessage()));
     }
-    return Redirector.getMenu((Role)request.getSession().getAttribute("role"),request);
+    return Redirector.getMenu((Role) request.getSession().getAttribute("role"), request);
   }
 }
+

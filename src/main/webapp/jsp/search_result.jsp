@@ -37,6 +37,13 @@
             <td>
                 <c:out value="${visit.state}"/>
             </td>
+            <td>
+                <form name="visit_element_reserve" method="POST" action="controller">
+                    <input type="hidden" name="command" value="reserve_visit" />
+                    <input type="hidden" name="idvisit" value="${visit.id}" />
+                    <input type="submit" value="Reserve"/>
+                </form>
+            </td>
         </tr>
     </c:forEach>
 </table>

@@ -46,10 +46,11 @@ public class VisitService {
     dao.getConnection().setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
     final LocalDate localDate = LocalDate.parse(date);
     final BeautyServiceType beautyType = BeautyServiceType.valueOf(type);
-    final List<Visit> result = dao.findAll();
+    final List<Visit> result = dao.findAllWithoutCustomer();
     return result.stream()
         .filter(visit -> visit.getDay().equals(localDate))
         .filter(visit -> visit.getBeautyServiceType().equals(beautyType))
+        .filter(visit -> visit.getState().equals(State.FREE))
         .collect(Collectors.toList());
   }
 
@@ -68,7 +69,7 @@ public class VisitService {
     }
   }
 
-  public void updateStateByID(final int id) throws SQLException{
+  public void finishVisitByID(final int id) throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     final Connection connection = dao.getConnection();
     connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
@@ -77,6 +78,25 @@ public class VisitService {
     if (visit.getState().equals(State.FREE) || visit.getState().equals(State.DONE)) throw new SQLException("message.visit.done_error");
     try {
       dao.update(id, State.DONE);
+      connection.commit();
+      dao.close();
+    } catch (SQLException e){
+      connection.rollback();
+      dao.close();
+      throw new SQLException("message.visit.update_state_error");
+    }
+  }
+
+  public void reserveVisitByID(final  int idvisit, final int iduser) throws SQLException{
+    final VisitDao dao = DaoFactory.getInstance().createVisitDao();
+    final Connection connection = dao.getConnection();
+    connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+    connection.setAutoCommit(false);
+    final Visit visit = dao.read(idvisit);
+    if (visit.getState().equals(State.AGREED) || visit.getState().equals(State.DONE)) throw new SQLException("message.visit.done_error");
+    try {
+      dao.update(idvisit, State.AGREED);
+      dao.update(idvisit,iduser);
       connection.commit();
       dao.close();
     } catch (SQLException e){
@@ -113,5 +133,7 @@ public class VisitService {
     }
     return false;
   }
+
+
 
 }

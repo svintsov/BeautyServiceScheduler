@@ -5,6 +5,7 @@ import command.action.DeleteVisitCommand;
 import command.action.FinishVisitCommand;
 import command.action.LoginCommand;
 import command.action.LogoutCommand;
+import command.action.ReserveCommand;
 import command.action.SearchVisitCommand;
 import command.action.SetLocaleCommand;
 import command.action.SignUpCommand;
@@ -70,6 +71,11 @@ public enum CommandEnum {
   SEARCH_VISIT{
     {
       this.command = new SearchVisitCommand();
+    }
+  },
+  RESERVE_VISIT{
+    {
+      this.command = new ReserveCommand();
     }
   },
   SEARCH_RESULT_PAGE{
