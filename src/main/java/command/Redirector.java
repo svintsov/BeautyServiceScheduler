@@ -12,7 +12,8 @@ public class Redirector {
       return commandEnum.getCurrentCommand().execute(request);
 
     } else if (role.equals(Role.CUSTOMER)) {
-      return ConfigurationManager.getProperty("path.page.main");
+      CommandEnum commandEnum = CommandEnum.CUSTOMERPAGE;
+      return commandEnum.getCurrentCommand().execute(request);
 
     } else if (role.equals(Role.MASTER)) {
       CommandEnum commandEnum = CommandEnum.MASTERPAGE;

@@ -9,6 +9,7 @@ import command.action.SetLocaleCommand;
 import command.action.SignUpCommand;
 import command.page.AddingFormCommand;
 import command.page.AdminPageCommand;
+import command.page.CustomerPageCommand;
 import command.page.MasterPageCommand;
 import command.page.RegistrationFormCommand;
 
@@ -46,6 +47,11 @@ public enum CommandEnum {
   MASTERPAGE{
     {
       this.command = new MasterPageCommand();
+    }
+  },
+  CUSTOMERPAGE{
+    {
+      this.command = new CustomerPageCommand();
     }
   },
   DELETE_VISIT{
