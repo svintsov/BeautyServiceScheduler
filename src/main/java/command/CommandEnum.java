@@ -43,7 +43,7 @@ public enum CommandEnum {
       this.command = new SetLocaleCommand();
     }
   },
-  ADMINPAGE{
+  ADMINISTRATORPAGE {
     {
       this.command = new AdminPageCommand();
     }
