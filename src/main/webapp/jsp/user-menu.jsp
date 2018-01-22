@@ -42,5 +42,6 @@
     ${errorMessage}
     <br/>
     <a href="controller?command=logout">Logout</a>
+    <a href="controller?command=searching_form">Search</a>
 </body>
 </html>

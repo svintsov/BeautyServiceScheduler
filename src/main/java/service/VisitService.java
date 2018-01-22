@@ -2,6 +2,7 @@ package service;
 
 import dao.DaoFactory;
 import dao.VisitDao;
+import entity.BeautyServiceType;
 import entity.Role;
 import entity.State;
 import entity.Visit;
@@ -10,6 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +38,19 @@ public class VisitService {
     } else {
       return result;
     }
+  }
+
+  public List<Visit> getAllVisitsForDate(final String type, String date) throws IOException, SQLException{
+    if (isDateInPast(date)) throw new IOException();
+    final VisitDao dao = DaoFactory.getInstance().createVisitDao();
+    dao.getConnection().setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+    final LocalDate localDate = LocalDate.parse(date);
+    final BeautyServiceType beautyType = BeautyServiceType.valueOf(type);
+    final List<Visit> result = dao.findAll();
+    return result.stream()
+        .filter(visit -> visit.getDay().equals(localDate))
+        .filter(visit -> visit.getBeautyServiceType().equals(beautyType))
+        .collect(Collectors.toList());
   }
 
   public void deleteByID(final int id) throws SQLException{

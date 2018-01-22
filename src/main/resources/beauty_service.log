@@ -139,3 +139,6 @@
 2018-01-22 10:04:05.309 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
 2018-01-22 10:05:25.969 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
 2018-01-22 10:06:56.593 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-22 10:17:42.712 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-22 10:47:33.636 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-22 10:49:46.108 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
