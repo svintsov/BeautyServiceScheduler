@@ -40,7 +40,7 @@ public class VisitService {
     }
   }
 
-  public List<Visit> getAllVisitsForDate(final String type, String date) throws IOException, SQLException{
+  public List<Visit> getAllVisitsForDate(final String type, final String date) throws IOException, SQLException{
     if (isDateInPast(date)) throw new IOException();
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     dao.getConnection().setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);

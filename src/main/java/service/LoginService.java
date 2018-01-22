@@ -1,6 +1,5 @@
 package service;
 
-import com.sun.istack.internal.NotNull;
 import dao.DaoFactory;
 import dao.UserDao;
 import entity.User;
@@ -20,11 +19,11 @@ public class LoginService {
     } else throw new SQLException();
   }
 
-  private boolean isExist(@NotNull final User user){
+  private boolean isExist(final User user){
     return user.getId()!=-1;
   }
 
-  private boolean isPasswordCorrect(@NotNull final User user, final String password){
+  private boolean isPasswordCorrect(final User user, final String password){
     return user.getPassword().equals(password);
   }
 
