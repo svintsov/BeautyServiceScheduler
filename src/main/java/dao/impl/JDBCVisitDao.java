@@ -6,7 +6,6 @@ import dao.mapper.CustomerMapper;
 import dao.mapper.MasterMapper;
 import dao.mapper.UserMapper;
 import dao.mapper.VisitMapper;
-import entity.Role;
 import entity.State;
 import entity.User;
 import entity.Visit;
@@ -67,6 +66,30 @@ public class JDBCVisitDao implements VisitDao {
     }
   }
 
+  @Override
+  public List<Visit> findAllWithoutCustomer() throws SQLException {
+    Map<Integer, Visit> visits = new HashMap<>();
+    Map<Integer, User> users = new HashMap<>();
+
+    try (Statement st = connection.createStatement()) {
+      ResultSet rs = st.executeQuery(SQLQueryManager.getProperty(SQLVisit.READ_ALL_WITHOUT_CUSTOMER.QUERY));
+
+      while (rs.next()) {
+        Visit visit = visitMapper
+            .extractFromResultSet(rs);
+        User master = masterMapper
+            .extractFromResultSet(rs);
+        visit = visitMapper
+            .makeUnique(visits, visit);
+        master = masterMapper
+            .makeUnique(users, master);
+        master.getVisits().add(visit);
+        visit.setMaster(master);
+      }
+      return new ArrayList<>(visits.values());
+    }
+  }
+
 
   @Override
   public void deleteAll() throws SQLException {
@@ -95,9 +118,9 @@ public class JDBCVisitDao implements VisitDao {
   }
 
   @Override
-  public void update(int id, User customer) throws SQLException {
-    try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.UPDATE_STATE.QUERY))){
-      st.setInt(1,customer.getId());
+  public void update(int id, int idCustomer) throws SQLException {
+    try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.UPDATE_CUSTOMER.QUERY))){
+      st.setInt(1,idCustomer);
       st.setInt(2,id);
       st.executeUpdate();
     }
@@ -171,6 +194,7 @@ public class JDBCVisitDao implements VisitDao {
   enum SQLVisit {
     READ("visit.read.id"),
     READ_ALL("visit.read.all"),
+    READ_ALL_WITHOUT_CUSTOMER("visit.read.all.without.customer"),
     INSERT("visit.create"),
     DELETE("visit.delete.id"),
     DELETE_ALL("visit.delete.all"),

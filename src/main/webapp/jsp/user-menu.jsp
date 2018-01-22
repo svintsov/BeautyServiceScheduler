@@ -1,16 +1,47 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: bazyl
-  Date: 1/11/18
-  Time: 4:51 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<html><head><title>Welcome</title></head>
+<html><head><title>Customer</title></head>
 <body>
-<h3>Welcome</h3>
-<hr/>
-${user}, hello!
-<hr/>
-<a href="controller?command=logout">Logout</a>
-</body></html>
+    <h3>Welcome,customer</h3>
+    <hr/>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Service</th>
+            <th>Day</th>
+            <th>Hour</th>
+            <th>Master</th>
+            <th>State</th>
+        </tr>
+        <c:forEach var="visit" items="${requestScope.visits}">
+            <tr>
+                <td>
+                    <c:out value="${visit.id}"/>
+                </td>
+                <td>
+                    <c:out value="${visit.beautyServiceType}"/>
+                </td>
+                <td>
+                    <c:out value="${visit.getStringDay()}"/>
+                </td>
+                <td>
+                    <c:out value="${visit.start.toString()}"/>
+                </td>
+                <td>
+                    <c:out value="${visit.master.getId()}"/>
+                </td>
+                <td>
+                    <c:out value="${visit.state}"/>
+                </td>
+
+            </tr>
+        </c:forEach>
+    </table>
+    <br/>
+    ${errorMessage}
+    <br/>
+    <a href="controller?command=logout">Logout</a>
+    <a href="controller?command=searching_form">Search</a>
+</body>
+</html>
