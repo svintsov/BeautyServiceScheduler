@@ -29,12 +29,10 @@ public class SearchVisitCommand implements Command {
     } catch (IOException e) {
       request.setAttribute("errorSearchVisitMessage",
           MessageManager.getProperty("message.visit.invalid_input.date"));
-      return CommandEnum.SEARCHING_FORM.getCurrentCommand().execute(request);
     } catch (SQLException e) {
       request.setAttribute("errorSearchVisitMessage",
           MessageManager.getProperty("message.visit.search_error"));
-      return CommandEnum.SEARCHING_FORM.getCurrentCommand().execute(request);
     }
-    return CommandEnum.SEARCH_RESULT_PAGE.getCurrentCommand().execute(request);
+    return CommandEnum.SEARCHING_FORM.getCurrentCommand().execute(request);
   }
 }

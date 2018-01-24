@@ -20,5 +20,50 @@
     ${errorSearchVisitMessage}
     <br/>
 </form>
+
+<h3>Result of search</h3>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Service</th>
+        <th>Day</th>
+        <th>Hour</th>
+        <th>Master</th>
+        <th>State</th>
+    </tr>
+    <c:forEach var="visit" items="${requestScope.visits}">
+        <tr>
+            <td>
+                <c:out value="${visit.id}"/>
+            </td>
+            <td>
+                <c:out value="${visit.beautyServiceType}"/>
+            </td>
+            <td>
+                <c:out value="${visit.getStringDay()}"/>
+            </td>
+            <td>
+                <c:out value="${visit.start.toString()}"/>
+            </td>
+            <td>
+                <c:out value="${visit.master.getId()}"/>
+            </td>
+            <td>
+                <c:out value="${visit.state}"/>
+            </td>
+            <td>
+                <form name="visit_element_reserve" method="POST" action="controller">
+                    <input type="hidden" name="command" value="reserve_visit" />
+                    <input type="hidden" name="idvisit" value="${visit.id}" />
+                    <input type="submit" value="Reserve"/>
+                </form>
+            </td>
+        </tr>
+    </c:forEach>
+</table>
+<br/>
+${errorMessage}
+<br/>
 </body>
 </html>
