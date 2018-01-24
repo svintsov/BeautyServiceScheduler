@@ -8,12 +8,16 @@ import service.VisitService;
 
 public class AdminPageCommand implements Command {
 
-  final private VisitService visitService = new VisitService();
+  private static final String ATTRIBUTE_NAME_VISITS="visits";
 
   @Override
-  public String execute(HttpServletRequest request) {
+  public String execute(final HttpServletRequest request) {
+    final VisitService visitService = new VisitService();
+
     try {
-      request.setAttribute("visits",visitService.getAllVisits());
+
+      request.setAttribute(ATTRIBUTE_NAME_VISITS,visitService.getAllVisits());
+
     } catch (SQLException e) {
       e.printStackTrace();
     }

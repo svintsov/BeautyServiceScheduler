@@ -10,14 +10,19 @@ import service.VisitService;
 
 public class MasterPageCommand implements Command {
 
-  private final VisitService visitService= new VisitService();
+  private static final String ATTRIBUTE_NAME_IDUSER="iduser";
+  private static final String ATTRIBUTE_NAME_VISITS="visits";
 
   @Override
-  public String execute(HttpServletRequest request) {
+  public String execute(final HttpServletRequest request) {
+    final VisitService visitService= new VisitService();
     final HttpSession session = request.getSession();
-    final int masterId = (Integer)session.getAttribute("iduser");
+    final int masterId = (Integer)session.getAttribute(ATTRIBUTE_NAME_IDUSER);
+
     try {
-      request.setAttribute("visits",visitService.getAllVisitsForUser(masterId, Role.MASTER));
+
+      request.setAttribute(ATTRIBUTE_NAME_VISITS,visitService.getAllVisitsForUser(masterId, Role.MASTER));
+
     } catch (SQLException e) {
       e.printStackTrace();
     }

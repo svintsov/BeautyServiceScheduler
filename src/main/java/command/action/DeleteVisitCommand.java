@@ -9,17 +9,21 @@ import service.VisitService;
 
 public class DeleteVisitCommand implements Command {
 
-  private final VisitService visitService = new VisitService();
+  private static final String PARAM_NAME_ID_VISIT ="idvisit";
+  private static final String ATTRIBUTE_NAME_ROLE ="role";
 
   @Override
-  public String execute(HttpServletRequest request) {
+  public String execute(final HttpServletRequest request) {
+
+    final VisitService visitService = new VisitService();
+
     try {
-      visitService.deleteByID(Integer.valueOf(request.getParameter("idvisit")));
+      visitService.deleteByID(Integer.valueOf(request.getParameter(PARAM_NAME_ID_VISIT)));
     } catch (SQLException e) {
       e.printStackTrace();
     }
 
-    return Redirector.getMenu((Role)request.getSession().getAttribute("role"),request);
+    return Redirector.getMenu((Role)request.getSession().getAttribute(ATTRIBUTE_NAME_ROLE),request);
   }
 
 

@@ -4,7 +4,6 @@ import static java.util.Objects.nonNull;
 
 import bundle.ConfigurationManager;
 import bundle.MessageManager;
-import com.sun.istack.internal.NotNull;
 import command.Command;
 import command.Redirector;
 import entity.Role;
@@ -18,6 +17,8 @@ public class LoginCommand implements Command {
 
   private static final String PARAM_NAME_LOGIN = "login";
   private static final String PARAM_NAME_PASSWORD = "password";
+  private static final String ATTRIBUTE_NAME_ROLE = "role";
+  private static final String ATTRIBUTE_NAME_ID_USER = "iduser";
 
   @Override
   public String execute(final HttpServletRequest request) {
@@ -28,25 +29,28 @@ public class LoginCommand implements Command {
     final HttpSession session = request.getSession();
     //Logged user.
     if (nonNull(session) &&
-        nonNull(session.getAttribute("login")) &&
-        nonNull(session.getAttribute("password"))) {
+        nonNull(session.getAttribute(PARAM_NAME_LOGIN)) &&
+        nonNull(session.getAttribute(PARAM_NAME_PASSWORD))) {
 
-      return Redirector.getMenu((Role) session.getAttribute("role"), request);
+      return Redirector.getMenu((Role) session.getAttribute(ATTRIBUTE_NAME_ROLE), request);
     }
     return getRedirect(request, session, login, password);
 
   }
 
-  private String getRedirect(final HttpServletRequest request, @NotNull final HttpSession session,
+  private String getRedirect(final HttpServletRequest request, final HttpSession session,
       final String login, final String password) {
     try {
+
       final LoginService loginService = new LoginService();
       final User user = loginService.getUserByLogin(login, password);
       final Role role = user.getRole();
-      session.setAttribute("password", password);
-      session.setAttribute("login", login);
-      session.setAttribute("role", role);
-      session.setAttribute("iduser", user.getId());
+
+      session.setAttribute(PARAM_NAME_PASSWORD, password);
+      session.setAttribute(PARAM_NAME_LOGIN, login);
+      session.setAttribute(ATTRIBUTE_NAME_ROLE, role);
+      session.setAttribute(ATTRIBUTE_NAME_ID_USER, user.getId());
+
       return Redirector.getMenu(role, request);
     } catch (SQLException e) {
       request.setAttribute("errorLoginPassMessage",
