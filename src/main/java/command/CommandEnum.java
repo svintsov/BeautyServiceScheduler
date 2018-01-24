@@ -14,7 +14,6 @@ import command.page.AdminPageCommand;
 import command.page.CustomerPageCommand;
 import command.page.MasterPageCommand;
 import command.page.RegistrationFormCommand;
-import command.page.SearchResultPageCommand;
 import command.page.SearchingFormCommand;
 
 public enum CommandEnum {
@@ -76,11 +75,6 @@ public enum CommandEnum {
   RESERVE_VISIT{
     {
       this.command = new ReserveCommand();
-    }
-  },
-  SEARCH_RESULT_PAGE{
-    {
-      this.command = new SearchResultPageCommand();
     }
   },
   ADDING_FORM{
