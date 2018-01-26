@@ -101,7 +101,7 @@ public class JDBCVisitDao implements VisitDao {
   }
 
   @Override
-  public void delete(int id) throws SQLException {
+  public void delete(final int id) throws SQLException {
     try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.DELETE.QUERY))){
       st.setInt(1,id);
       st.executeUpdate();
@@ -109,7 +109,7 @@ public class JDBCVisitDao implements VisitDao {
   }
 
   @Override
-  public void update(int id, State state) throws SQLException {
+  public void update(final int id, final State state) throws SQLException {
     try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.UPDATE_STATE.QUERY))){
       st.setString(1,state.toString());
       st.setInt(2,id);
@@ -118,7 +118,7 @@ public class JDBCVisitDao implements VisitDao {
   }
 
   @Override
-  public void update(int id, int idCustomer) throws SQLException {
+  public void update(final int id, final int idCustomer) throws SQLException {
     try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.UPDATE_CUSTOMER.QUERY))){
       st.setInt(1,idCustomer);
       st.setInt(2,id);
@@ -127,7 +127,16 @@ public class JDBCVisitDao implements VisitDao {
   }
 
   @Override
-  public void create(Map<String, String> bundle) throws SQLException {
+  public void update(final int id, final String message) throws SQLException {
+    try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.UPDATE_REVIEW.QUERY))){
+      st.setString(1,message);
+      st.setInt(2,id);
+      st.executeUpdate();
+    }
+  }
+
+  @Override
+  public void create(final Map<String, String> bundle) throws SQLException {
     try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.INSERT.QUERY))){
       SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
       Date date = Date.valueOf(bundle.get("day"));
@@ -147,12 +156,12 @@ public class JDBCVisitDao implements VisitDao {
   }
 
   @Override
-  public void create(Visit model) throws SQLException {
+  public void create(final Visit model) throws SQLException {
 
   }
 
   @Override
-  public Visit read(Integer id) throws SQLException {
+  public Visit read(final Integer id) throws SQLException {
     Visit result = new Visit();
     result.setId(-1);
 
@@ -168,12 +177,12 @@ public class JDBCVisitDao implements VisitDao {
   }
 
   @Override
-  public void update(Visit model) throws SQLException {
+  public void update(final Visit model) throws SQLException {
 
   }
 
   @Override
-  public void delete(Visit model) throws SQLException {
+  public void delete(final Visit model) throws SQLException {
 
   }
 
@@ -200,6 +209,7 @@ public class JDBCVisitDao implements VisitDao {
     DELETE_ALL("visit.delete.all"),
     UPDATE_STATE("visit.update.state"),
     UPDATE_CUSTOMER("visit.update.customer"),
+    UPDATE_REVIEW("visit.update.review"),
     SAFE_ON("sql.safe_mode.on"),
     SAFE_OFF("sql.safe_mode.off");
 

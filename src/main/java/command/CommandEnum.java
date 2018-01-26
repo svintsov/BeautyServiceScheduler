@@ -1,20 +1,7 @@
 package command;
 
-import command.action.CreateVisitCommand;
-import command.action.DeleteVisitCommand;
-import command.action.FinishVisitCommand;
-import command.action.LoginCommand;
-import command.action.LogoutCommand;
-import command.action.ReserveCommand;
-import command.action.SearchVisitCommand;
-import command.action.SetLocaleCommand;
-import command.action.SignUpCommand;
-import command.page.AddingFormCommand;
-import command.page.AdminPageCommand;
-import command.page.CustomerPageCommand;
-import command.page.MasterPageCommand;
-import command.page.RegistrationFormCommand;
-import command.page.SearchingFormCommand;
+import command.action.*;
+import command.page.*;
 
 public enum CommandEnum {
   LOGIN {
@@ -85,6 +72,21 @@ public enum CommandEnum {
   SEARCHING_FORM{
     {
       this.command = new SearchingFormCommand();
+    }
+  },
+  FINISHED_VISITS_PAGE{
+    {
+      this.command = new FinishedVisitsPageCommand();
+    }
+  },
+  REVIEW_FORM{
+    {
+      this.command = new ReviewFormCommand();
+    }
+  },
+  WRITE_REVIEW{
+    {
+      this.command = new SendReviewCommand();
     }
   },
   CREATE_VISIT{

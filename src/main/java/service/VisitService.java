@@ -95,6 +95,25 @@ public class VisitService {
     }
   }
 
+  public void writeReviewForVisit(final int id, final String message) throws SQLException{
+    final VisitDao dao = DaoFactory.getInstance().createVisitDao();
+    final Connection connection = dao.getConnection();
+    connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+    connection.setAutoCommit(false);
+
+    final Visit visit = dao.read(id);
+    if (!visit.getState().equals(State.DONE)) throw new SQLException("message.visit.review_error");
+    try {
+      dao.update(id, message);
+      connection.commit();
+      dao.close();
+    } catch (SQLException e){
+      connection.rollback();
+      dao.close();
+      throw new SQLException("message.visit.review_error");
+    }
+  }
+
   public void reserveVisitByID(final  int idVisit, final int idUser) throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     final Connection connection = dao.getConnection();
@@ -148,7 +167,6 @@ public class VisitService {
     }
     return false;
   }
-
 
 
 }

@@ -160,3 +160,9 @@
 2018-01-26 16:15:04.698 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
 2018-01-26 16:18:18.547 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
 2018-01-26 16:19:15.302 [http-nio-8081-exec-4] INFO   - Mail for review have been sent to:email1
+2018-01-26 16:59:46.198 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 17:01:42.683 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 17:08:20.356 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 17:09:12.041 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 17:11:28.182 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 17:15:05.929 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener

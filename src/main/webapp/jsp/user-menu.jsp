@@ -34,6 +34,13 @@
                 <td>
                     <c:out value="${visit.state}"/>
                 </td>
+                <td>
+                    <form name="write_review" method="post" action="controller">
+                        <input type="hidden" name="command" value="review_form" />
+                        <input type="hidden" name="idvisit" value="${visit.id}">
+                        <input type="submit" value="Write review"/>
+                    </form>
+                </td>
 
             </tr>
         </c:forEach>
