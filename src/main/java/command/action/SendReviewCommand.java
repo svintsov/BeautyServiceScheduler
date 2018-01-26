@@ -1,5 +1,6 @@
 package command.action;
 
+import bundle.MessageManager;
 import command.Redirector;
 import entity.Role;
 import service.VisitService;
@@ -20,7 +21,7 @@ public class SendReviewCommand implements command.Command {
         try {
             visitService.writeReviewForVisit(idVisit,request.getParameter(PARAM_NAME_REVIEW));
         } catch (SQLException e) {
-            e.printStackTrace();
+            request.setAttribute("errorMessage", MessageManager.getProperty(e.getMessage()));
         }
 
         return Redirector.getMenu(Role.CUSTOMER,request);
