@@ -5,20 +5,23 @@ import javax.servlet.http.HttpServletRequest;
 
 public class CommandFactory {
 
-  public Command defineCommand(HttpServletRequest request) {
+  private static final String PARAM_NAME_COMAMND="command";
+  private static final String ATTRIBUTE_NAME_WRONG_ACTION="wrongAction";
+
+  public Command defineCommand(final HttpServletRequest request) {
     Command current = new EmptyCommand();
-// извлечение имени команды из запроса
-    String action = request.getParameter("command");
+    final String action = request.getParameter(PARAM_NAME_COMAMND);
     if (action == null || action.isEmpty()) {
-// если команда не задана в текущем запросе
       return current;
     }
-// получение объекта, соответствующего команде
+
     try {
+
       CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
       current = currentEnum.getCurrentCommand();
+
     } catch (IllegalArgumentException e) {
-      request.setAttribute("wrongAction", action
+      request.setAttribute(ATTRIBUTE_NAME_WRONG_ACTION, action
           + MessageManager.getProperty("message.wrongaction"));
     }
     return current;

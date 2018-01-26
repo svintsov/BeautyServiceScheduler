@@ -14,17 +14,18 @@ import service.VisitService;
 
 public class CreateVisitCommand implements Command {
 
-  private static final String PARAM_NAME_SERVICE = "services_select";
-  private static final String PARAM_NAME_DAY = "day";
-  private static final String PARAM_NAME_HOUR = "hour";
-  private static final String PARAM_NAME_CUSTOMER = "customer";
-  private static final String PARAM_NAME_MASTER = "master";
-  private static final String PARAM_NAME_STATE = "states_select";
-
-  private final VisitService visitService = new VisitService();
+  final String PARAM_NAME_SERVICE = "services_select";
+  final String PARAM_NAME_DAY = "day";
+  final String PARAM_NAME_HOUR = "hour";
+  final String PARAM_NAME_CUSTOMER = "customer";
+  final String PARAM_NAME_MASTER = "master";
+  final String PARAM_NAME_STATE = "states_select";
+  private static final String ATTRIBUTE_NAME_ROLE="role";
 
   @Override
-  public String execute(HttpServletRequest request) {
+  public String execute(final HttpServletRequest request) {
+
+    final VisitService visitService = new VisitService();
 
     try {
       visitService.createVisit(retrieveVisit(request));
@@ -38,7 +39,7 @@ public class CreateVisitCommand implements Command {
       return CommandEnum.ADDING_FORM.getCurrentCommand().execute(request);
     }
 
-    return Redirector.getMenu((Role)request.getSession().getAttribute("role"),request);
+    return Redirector.getMenu((Role)request.getSession().getAttribute(ATTRIBUTE_NAME_ROLE),request);
   }
 
   private Map<String,String> retrieveVisit(HttpServletRequest request){

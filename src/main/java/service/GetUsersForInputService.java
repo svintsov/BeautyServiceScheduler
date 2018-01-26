@@ -13,7 +13,9 @@ public class GetUsersForInputService {
   public List<User> getAllUsers(final Role role) throws SQLException{
     final UserDao dao = DaoFactory.getInstance().createUserDao();
     dao.getConnection().setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+
     List<User> users = dao.findAll(role);
+
     dao.close();
     return users;
   }

@@ -14,18 +14,21 @@ public class SearchVisitCommand implements Command {
 
   private static final String PARAM_NAME_SERVICE = "services_select";
   private static final String PARAM_NAME_DAY = "day";
-
-  private final VisitService visitService = new VisitService();
+  private static final String ATTRIBUTE_NAME_VISITS = "visits";
 
   @Override
-  public String execute(HttpServletRequest request) {
+  public String execute(final HttpServletRequest request) {
 
-    final String date =request.getParameter(PARAM_NAME_DAY);
+    final VisitService visitService = new VisitService();
+
+    final String date = request.getParameter(PARAM_NAME_DAY);
     final String type = request.getParameter(PARAM_NAME_SERVICE);
 
     try {
-      List<Visit> visits = visitService.getAllVisitsForDate(type,date);
-      request.setAttribute("visits",visits);
+
+      final List<Visit> visits = visitService.getAllVisitsForDate(type, date);
+      request.setAttribute(ATTRIBUTE_NAME_VISITS, visits);
+
     } catch (IOException e) {
       request.setAttribute("errorSearchVisitMessage",
           MessageManager.getProperty("message.visit.invalid_input.date"));

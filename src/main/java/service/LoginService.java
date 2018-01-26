@@ -12,7 +12,9 @@ public class LoginService {
     final UserDao dao = DaoFactory.getInstance().createUserDao();
     final Connection connection = dao.getConnection();
     connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+
     final User user = dao.read(enterLogin);
+
     dao.close();
     if (isExist(user) && isPasswordCorrect(user,enterPass)){
       return user;
