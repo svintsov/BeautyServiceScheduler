@@ -54,6 +54,7 @@
                 <form name="visit_element_finish" method="POST" action="controller">
                     <input type="hidden" name="command" value="finish_visit" />
                     <input type="hidden" name="idvisit" value="${visit.id}" />
+                    <input type="hidden" name="idcustomer" value="${visit.customer.getId()}"/>
                     <input type="submit" value="Finish"/>
                 </form>
             </td>

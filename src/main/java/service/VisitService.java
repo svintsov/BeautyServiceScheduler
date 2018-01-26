@@ -29,15 +29,15 @@ public class VisitService {
     return result;
   }
 
-  public List<Visit> getAllVisitsForUser(final int id, final Role role) throws SQLException{
+  public List<Visit> getAllVisitsForUser(final int idUser, final Role role) throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     dao.getConnection().setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 
     final List<Visit> result = dao.findAll();
     if (role.equals(Role.MASTER)){
-      return result.stream().filter(v -> v.getMaster().getId()==id).collect(Collectors.toList());
+      return result.stream().filter(v -> v.getMaster().getId()==idUser).collect(Collectors.toList());
     } else if (role.equals(Role.CUSTOMER)) {
-      return result.stream().filter(v -> v.getCustomer().getId()==id).collect(Collectors.toList());
+      return result.stream().filter(v -> v.getCustomer().getId()==idUser).collect(Collectors.toList());
     } else {
       return result;
     }
@@ -95,19 +95,19 @@ public class VisitService {
     }
   }
 
-  public void reserveVisitByID(final  int idvisit, final int iduser) throws SQLException{
+  public void reserveVisitByID(final  int idVisit, final int idUser) throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     final Connection connection = dao.getConnection();
     connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
     connection.setAutoCommit(false);
 
-    final Visit visit = dao.read(idvisit);
+    final Visit visit = dao.read(idVisit);
 
     if (visit.getState().equals(State.AGREED) || visit.getState().equals(State.DONE)) throw new SQLException("message.visit.done_error");
     try {
 
-      dao.update(idvisit, State.AGREED);
-      dao.update(idvisit,iduser);
+      dao.update(idVisit, State.AGREED);
+      dao.update(idVisit,idUser);
       connection.commit();
       dao.close();
 
