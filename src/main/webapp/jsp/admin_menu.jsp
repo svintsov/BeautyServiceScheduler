@@ -50,7 +50,7 @@
                     <form name="visit_element_delete" method="POST" action="controller">
                         <input type="hidden" name="command" value="delete_visit"/>
                         <input type="hidden" name="idvisit" value="${visit.id}"/>
-                        <input type="submit" value="Delete"/>
+                        <input type="submit" value="<fmt:message key="text.delete"/> "/>
                     </form>
                 </td>
                 <td>
@@ -58,7 +58,7 @@
                         <input type="hidden" name="command" value="finish_visit"/>
                         <input type="hidden" name="idvisit" value="${visit.id}"/>
                         <input type="hidden" name="idcustomer" value="${visit.customer.getId()}"/>
-                        <input type="submit" value="Finish"/>
+                        <input type="submit" value="<fmt:message key="text.finish"/> "/>
                     </form>
                 </td>
             </tr>

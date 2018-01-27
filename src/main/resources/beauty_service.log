@@ -180,3 +180,5 @@
 2018-01-27 17:37:49.156 [http-nio-8080-exec-5] INFO   - ua
 2018-01-27 17:53:46.623 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
 2018-01-27 17:53:57.271 [http-nio-8080-exec-6] INFO   - ua
+2018-01-27 18:07:56.751 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 18:08:06.166 [http-nio-8080-exec-6] INFO   - ua
