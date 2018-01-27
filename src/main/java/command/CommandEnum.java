@@ -74,11 +74,6 @@ public enum CommandEnum {
       this.command = new SearchingFormCommand();
     }
   },
-  FINISHED_VISITS_PAGE{
-    {
-      this.command = new FinishedVisitsPageCommand();
-    }
-  },
   REVIEW_FORM{
     {
       this.command = new ReviewFormCommand();
