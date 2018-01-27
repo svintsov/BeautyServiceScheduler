@@ -1,19 +1,22 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Master page</title>
 </head>
 <body>
-    <p>Hello,master</p>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:bundle basename="texts">
+    <p><fmt:message key="text.master.page.heading"/> </p>
     <table>
         <tr>
-            <th>ID</th>
-            <th>Service</th>
-            <th>Day</th>
-            <th>Hour</th>
-            <th>Customer</th>
-            <th>State</th>
+            <th><fmt:message key="text.visit.id"/></th>
+            <th><fmt:message key="text.visit.service"/></th>
+            <th><fmt:message key="text.visit.day"/></th>
+            <th><fmt:message key="text.visit.hour"/></th>
+            <th><fmt:message key="text.visit.customer"/></th>
+            <th><fmt:message key="text.visit.state"/></th>
         </tr>
         <c:forEach var="visit" items="${requestScope.visits}">
             <tr>
@@ -37,9 +40,10 @@
                 </td>
                 <td>
                     <form name="visit_element_finish" method="POST" action="controller">
-                        <input type="hidden" name="command" value="finish_visit" />
-                        <input type="hidden" name="idvisit" value="${visit.id}" />
-                        <input type="submit" value="Finish"/>
+                        <input type="hidden" name="command" value="finish_visit"/>
+                        <input type="hidden" name="idvisit" value="${visit.id}"/>
+                        <input type="hidden" name="idcustomer" value="${visit.customer.getId()}"/>
+                        <input type="submit" value="<fmt:message key="text.finish"/>"/>
                     </form>
                 </td>
             </tr>
@@ -48,6 +52,7 @@
     <br/>
     ${errorMessage}
     <br/>
-    <a href="controller?command=logout">Logout</a>
+    <a href="controller?command=logout"><fmt:message key="text.logout"/></a>
+</fmt:bundle>
 </body>
 </html>

@@ -10,8 +10,9 @@ public interface VisitDao extends Dao<Visit,Integer> {
   List<Visit> findAll() throws SQLException;
   List<Visit> findAllWithoutCustomer() throws SQLException;
   void deleteAll() throws SQLException;
-  void delete(int id) throws SQLException;
-  void update(int id, State state) throws SQLException;
-  void update(int id, int idCustomer) throws SQLException;
-  void create(Map<String,String> bundle) throws SQLException;
+  void delete(final int id) throws SQLException;
+  void update(final int id, final State state) throws SQLException;
+  void update(final int id, final int idCustomer) throws SQLException;
+  void update(final int id, final String message) throws SQLException;
+  void create(final Map<String,String> bundle) throws SQLException;
 }

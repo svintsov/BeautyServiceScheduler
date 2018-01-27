@@ -4,7 +4,6 @@
     <title>Beauty service scheduler</title>
 </head>
 <body>
-<h2>Привет всем!</h2>
 <br>
 <jsp:forward page="/jsp/login.jsp"/>
 <br>
