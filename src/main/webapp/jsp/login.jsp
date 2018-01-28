@@ -51,7 +51,7 @@
         </form>
         <hr/>
 
-        <a href="${pageContext.request.contextPath}/jsp/registration.jsp"><fmt:message
+        <a href="controller?command=registrationform"><fmt:message
                 key="text.login.page.registration"/></a>
     </fmt:bundle>
 </div>
