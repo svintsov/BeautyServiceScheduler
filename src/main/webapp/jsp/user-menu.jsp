@@ -4,26 +4,35 @@
 <html>
 <head>
     <title>Customer page</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js">
+    </script>
+    <script src="js/paginathing.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <link rel="stylesheet" href="css/material.min.css">
+    <script src="js/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:bundle basename="texts">
-    <p><fmt:message key="text.customer.page.heading"/> </p>
-    <table>
+    <h2><fmt:message key="text.customer.page.heading"/></h2>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <tr>
             <th><fmt:message key="text.visit.id"/></th>
-            <th><fmt:message key="text.visit.service"/></th>
+            <th class="mdl-data-table__cell--non-numeric"><fmt:message
+                    key="text.visit.service"/></th>
             <th><fmt:message key="text.visit.day"/></th>
             <th><fmt:message key="text.visit.hour"/></th>
             <th><fmt:message key="text.visit.master"/></th>
-            <th><fmt:message key="text.visit.state"/></th>
+            <th class="mdl-data-table__cell--non-numeric"><fmt:message key="text.visit.state"/></th>
         </tr>
         <c:forEach var="visit" items="${requestScope.visits}">
             <tr>
                 <td>
                     <c:out value="${visit.id}"/>
                 </td>
-                <td>
+                <td class="mdl-data-table__cell--non-numeric">
                     <c:out value="${visit.beautyServiceType}"/>
                 </td>
                 <td>
@@ -35,14 +44,15 @@
                 <td>
                     <c:out value="${visit.master.getId()}"/>
                 </td>
-                <td>
+                <td class="mdl-data-table__cell--non-numeric">
                     <c:out value="${visit.state}"/>
                 </td>
                 <td>
                     <form name="write_review" method="post" action="controller">
                         <input type="hidden" name="command" value="review_form"/>
                         <input type="hidden" name="idvisit" value="${visit.id}">
-                        <input type="submit" value="<fmt:message key="text.review"/> "/>
+                        <input type="submit" value="<fmt:message key="text.review"/> "
+                               class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>
                     </form>
                 </td>
 
