@@ -28,7 +28,7 @@
             </select><br/>
             <fmt:message key="text.visit.day"/>::<label><input name="day" type="date" required
                                                                placeholder="Day"></label><br/>
-            <input type="submit" value="Search"/>
+            <input type="submit" value="<fmt:message key="text.search"/>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>
             <br/>
                 ${errorSearchVisitMessage}
             <br/>
@@ -38,6 +38,7 @@
         <h3><fmt:message key="text.search.result"/></h3>
 
         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
             <tr>
                 <th><fmt:message key="text.visit.id"/></th>
                 <th class="mdl-data-table__cell--non-numeric"><fmt:message
@@ -48,6 +49,8 @@
                 <th class="mdl-data-table__cell--non-numeric"><fmt:message
                         key="text.visit.state"/></th>
             </tr>
+            </thead>
+            <tbody>
             <c:forEach var="visit" items="${requestScope.visits}">
                 <tr>
                     <td>
@@ -78,6 +81,7 @@
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
         <br/>
         ${errorMessage}

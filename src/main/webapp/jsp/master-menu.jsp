@@ -14,11 +14,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
+<a href="controller?command=setLocale&language=eng">eng</a>
+<a href="controller?command=setLocale&language=ua">ua</a>
 <div class="container_my">
     <fmt:setLocale value="${sessionScope.locale}"/>
     <fmt:bundle basename="texts">
         <p><fmt:message key="text.master.page.heading"/></p>
         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
             <tr>
                 <th><fmt:message key="text.visit.id"/></th>
                 <th class="mdl-data-table__cell--non-numeric"><fmt:message key="text.visit.service"/></th>
@@ -27,6 +30,8 @@
                 <th><fmt:message key="text.visit.customer"/></th>
                 <th><fmt:message key="text.visit.state"/></th>
             </tr>
+            </thead>
+            <tbody>
             <c:forEach var="visit" items="${requestScope.visits}">
                 <tr>
                     <td>
@@ -59,6 +64,7 @@
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
         <br/>
         ${errorMessage}
