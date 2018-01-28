@@ -32,12 +32,12 @@ public class SecurityFilter implements Filter {
   public void init(FilterConfig filterConfig) throws ServletException {
     final CommandEnum[] adminCommands = {CommandEnum.ADMINISTRATORPAGE, CommandEnum.ADDING_FORM,
         CommandEnum.CREATE_VISIT, CommandEnum.FINISH_VISIT, CommandEnum.DELETE_VISIT,
-        CommandEnum.LOGOUT};
+        CommandEnum.LOGOUT, CommandEnum.SETLOCALE};
     final CommandEnum[] masterCommands = {CommandEnum.MASTERPAGE, CommandEnum.FINISH_VISIT,
-        CommandEnum.LOGOUT};
+        CommandEnum.LOGOUT,CommandEnum.SETLOCALE};
     final CommandEnum[] customerCommands = {CommandEnum.CUSTOMERPAGE, CommandEnum.SEARCHING_FORM,
         CommandEnum.RESERVE_VISIT, CommandEnum.LOGOUT, CommandEnum.REVIEW_FORM,
-        CommandEnum.WRITE_REVIEW, CommandEnum.SEARCH_VISIT};
+        CommandEnum.WRITE_REVIEW, CommandEnum.SEARCH_VISIT,CommandEnum.SETLOCALE};
     final CommandEnum[] guestCommands = {CommandEnum.LOGIN,CommandEnum.SETLOCALE,CommandEnum.REGISTRATIONFORM,CommandEnum.SIGN_UP};
     filterCommands = new HashMap<>();
     filterCommands.put(Role.ADMINISTRATOR, new ArrayList<>(Arrays.asList(adminCommands)));

@@ -1,7 +1,8 @@
 package command.action;
 
-import bundle.ConfigurationManager;
 import command.Command;
+import command.Redirector;
+import entity.Role;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +12,7 @@ public class SetLocaleCommand implements Command {
 
   private static final String PARAM_NAME_LANGUAGE = "language";
   private static final String ATTRIBUTE_NAME_LOCALE = "locale";
+  private static final String ATTRIBUTE_NAME_ROLE="role";
   private static final String LOCALE_UA="uk_UA";
   private static final String LOCALE_US="us_US";
   private static final String LANGUAGE_UA="ua";
@@ -28,6 +30,10 @@ public class SetLocaleCommand implements Command {
     } else {
       session.setAttribute(ATTRIBUTE_NAME_LOCALE,LOCALE_US);
     }
-    return ConfigurationManager.getProperty("path.page.login");
+    Role role = (Role) session.getAttribute(ATTRIBUTE_NAME_ROLE);
+    if (role==null){
+      role = Role.UNKNOWN;
+    }
+    return Redirector.getMenu(role,request);
   }
 }
