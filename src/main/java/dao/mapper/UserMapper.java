@@ -7,14 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * User mapper implementation
+ */
 public class UserMapper implements ObjectMapper<User> {
 
-  protected String ID;
-  protected String LOGIN;
-  protected String PASSWORD;
-  protected String EMAIL;
-  protected String FULL_NAME;
-  protected String TYPE;
+  String ID;
+  String LOGIN;
+  String PASSWORD;
+  String EMAIL;
+  String FULL_NAME;
+  String TYPE;
 
   public UserMapper(){
     this.ID="idusers";
@@ -25,8 +28,14 @@ public class UserMapper implements ObjectMapper<User> {
     this.TYPE="type";
   }
 
+  /**
+   * Extracts from result set and creates new User
+   * @param rs
+   * @return
+   * @throws SQLException
+   */
   @Override
-  public User extractFromResultSet(ResultSet rs) throws SQLException {
+  public User extractFromResultSet(final ResultSet rs) throws SQLException {
     User result = new User();
     result.setId(rs.getInt(ID));
     result.setLogin(rs.getString(LOGIN));
@@ -39,6 +48,12 @@ public class UserMapper implements ObjectMapper<User> {
 
   }
 
+  /**
+   * Checks for unique user
+   * @param cache
+   * @param user
+   * @return
+   */
   @Override
   public User makeUnique(Map<Integer, User> cache, User user) {
 

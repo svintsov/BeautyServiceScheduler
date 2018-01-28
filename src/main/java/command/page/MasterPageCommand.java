@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import service.VisitService;
 
+/**
+ * Command redirects to master's main page
+ */
 public class MasterPageCommand implements Command {
 
   private static final String ATTRIBUTE_NAME_IDUSER="iduser";

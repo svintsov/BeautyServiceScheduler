@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.sql.DataSource;
 
+/**
+ * Implementation of Factory pattern for Dao
+ */
 public class JDBCDaoFactory extends DaoFactory {
 
   private DataSource dataSource = ConnectionPoolHolder.getDataSource();
@@ -21,7 +24,10 @@ public class JDBCDaoFactory extends DaoFactory {
     return new JDBCVisitDao(getConnection());
   }
 
-
+  /**
+   * Gets connection from connection pool holder
+   * @return
+   */
   private Connection getConnection(){
     try {
       return dataSource.getConnection();

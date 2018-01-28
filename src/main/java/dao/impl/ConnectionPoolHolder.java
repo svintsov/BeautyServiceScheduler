@@ -3,6 +3,9 @@ package dao.impl;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 
+/**
+ * Connection pool storage and settings
+ */
 public class ConnectionPoolHolder {
   private static volatile DataSource dataSource;
 

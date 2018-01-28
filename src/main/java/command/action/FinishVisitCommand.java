@@ -10,12 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import service.MailService;
 import service.VisitService;
 
+/**
+ * Finish visit command by master or administrator
+ */
 public class FinishVisitCommand implements Command {
 
   private static final String PARAM_NAME_ID_VISIT = "idvisit";
   private static final String ATTRIBUTE_NAME_ROLE ="role";
   private static final String PARAM_NAME_ID_CUSTOMER = "idcustomer";
 
+  /**
+   * Executes command
+   * @param request
+   * @return Redirection to role's main page(Master page is main)
+   */
   @Override
   public String execute(final HttpServletRequest request) {
     final VisitService visitService = new VisitService();

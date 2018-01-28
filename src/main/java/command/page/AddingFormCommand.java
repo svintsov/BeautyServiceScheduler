@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import service.GetUsersForInputService;
 
+/**
+ * Command redirects to adding form
+ */
 public class AddingFormCommand implements Command {
 
   final String ATTRIBUTE_NAME_MASTERS = "masters";

@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/**
+ * Main servlet that retrieves command as request param and executes it. Gets needed page
+ */
 public class Controller extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -27,22 +29,17 @@ public class Controller extends HttpServlet {
   private void processRequest(HttpServletRequest request,
       HttpServletResponse response)
       throws ServletException, IOException {
-// определение команды, пришедшей из JSP
+
     final CommandFactory client = new CommandFactory();
     final Command command = client.defineCommand(request);
-    /*
-     * вызов реализованного метода execute() и передача параметров
-     * классу-обработчику конкретной команды
-     */
+
     String page = command.execute(request);
-// метод возвращает страницу ответа
-// page = null; // поэксперементировать!
+
     if (page != null) {
       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-// вызов страницы ответа на запрос
+
       dispatcher.forward(request, response);
     } else {
-// установка страницы c cообщением об ошибке
       page = ConfigurationManager.getProperty("path.page.index");
       request.getSession().setAttribute("nullPage",
           MessageManager.getProperty("message.nullpage"));

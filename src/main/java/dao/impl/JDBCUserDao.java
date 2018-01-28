@@ -12,12 +12,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of User Dao
+ */
 public class JDBCUserDao implements UserDao {
 
   private Connection connection;
   private UserMapper mapper;
 
-  public JDBCUserDao(Connection connection) {
+  JDBCUserDao(Connection connection) {
     this.connection=connection;
     mapper = new UserMapper();
   }
@@ -26,6 +29,11 @@ public class JDBCUserDao implements UserDao {
     return connection;
   }
 
+  /**
+   * Creates user in database
+   * @param model
+   * @throws SQLException
+   */
   @Override
   public void create(User model) throws SQLException {
     try (PreparedStatement statement = connection.prepareStatement(SQLQueryManager.getProperty(SQLUser.INSERT.QUERY))) {
@@ -39,6 +47,12 @@ public class JDBCUserDao implements UserDao {
 
   }
 
+  /**
+   * Reads user from db by id
+   * @param id
+   * @return
+   * @throws SQLException
+   */
   @Override
   public User read(Integer id) throws SQLException {
     User result = new User();
@@ -54,6 +68,12 @@ public class JDBCUserDao implements UserDao {
     return result;
   }
 
+  /**
+   * Reads user from db by login
+   * @param login
+   * @return
+   * @throws SQLException
+   */
   @Override
   public User read(String login) throws SQLException {
     User result = new User();
@@ -69,6 +89,12 @@ public class JDBCUserDao implements UserDao {
     return result;
   }
 
+  /**
+   * Reads all users with specific role
+   * @param role
+   * @return
+   * @throws SQLException
+   */
   @Override
   public List<User> findAll(Role role) throws SQLException {
     try(PreparedStatement statement = connection.prepareStatement(SQLQueryManager.getProperty(SQLUser.GET_ALL_BY_ROLE.QUERY))){
@@ -83,16 +109,29 @@ public class JDBCUserDao implements UserDao {
 
   }
 
+  /**
+   * Updates User with model
+   * @param model
+   * @throws SQLException
+   */
   @Override
   public void update(User model) throws SQLException {
 
   }
 
+  /**
+   * Deletes User from db
+   * @param model
+   * @throws SQLException
+   */
   @Override
   public void delete(User model) throws SQLException {
 
   }
 
+  /**
+   * Closes db connection
+   */
   @Override
   public void close() {
     try {
@@ -103,7 +142,9 @@ public class JDBCUserDao implements UserDao {
   }
 
 
-
+  /**
+   * Holder of sql scripts
+   */
   enum SQLUser {
     GET_BY_ID("user.read.id"),
     GET_BY_LOGIN("user.read.login"),

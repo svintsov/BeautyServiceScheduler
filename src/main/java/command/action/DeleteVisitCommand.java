@@ -7,11 +7,19 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import service.VisitService;
 
+/**
+ * Delete visit command by administrator
+ */
 public class DeleteVisitCommand implements Command {
 
   private static final String PARAM_NAME_ID_VISIT ="idvisit";
   private static final String ATTRIBUTE_NAME_ROLE ="role";
 
+  /**
+   * Executes command
+   * @param request
+   * @return Redirection to role's main page
+   */
   @Override
   public String execute(final HttpServletRequest request) {
 

@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Interface for Visit entity in Dao
+ */
 public interface VisitDao extends Dao<Visit,Integer> {
   List<Visit> findAll() throws SQLException;
   List<Visit> findAllWithoutCustomer() throws SQLException;

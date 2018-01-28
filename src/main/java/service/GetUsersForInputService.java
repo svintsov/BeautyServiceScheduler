@@ -8,6 +8,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Gets Users info for front-end
+ */
 public class GetUsersForInputService {
 
   public List<User> getAllUsers(final Role role) throws SQLException{

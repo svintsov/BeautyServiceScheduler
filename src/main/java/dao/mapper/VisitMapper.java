@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.Map;
 
+/**
+ * Visit mapper implementation
+ */
 public class VisitMapper implements ObjectMapper<Visit> {
 
   private final String ID="idvisits";
@@ -17,8 +20,14 @@ public class VisitMapper implements ObjectMapper<Visit> {
   private final String SERVICE_TYPE = "service";
   private final String REVIEW="review";
 
+  /**
+   * Retrieves from result set Visit entity
+   * @param rs
+   * @return
+   * @throws SQLException
+   */
   @Override
-  public Visit extractFromResultSet(ResultSet rs) throws SQLException {
+  public Visit extractFromResultSet(final ResultSet rs) throws SQLException {
     Visit result = new Visit();
     result.setId(rs.getInt(ID));
     result.setDay(rs.getDate(DAY).toLocalDate());
@@ -29,8 +38,14 @@ public class VisitMapper implements ObjectMapper<Visit> {
     return result;
   }
 
+  /**
+   * Check Visit for unique
+   * @param cache
+   * @param visit
+   * @return
+   */
   @Override
-  public Visit makeUnique(Map<Integer, Visit> cache, Visit visit) {
+  public Visit makeUnique(final Map<Integer, Visit> cache, final Visit visit) {
     cache.putIfAbsent(visit.getId(),visit);
     return cache.get(visit.getId());
   }

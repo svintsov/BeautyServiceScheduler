@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import service.VisitService;
 
+/**
+ * Command redirects to customer's main page
+ */
 public class CustomerPageCommand implements command.Command {
 
   private static final String ATTRIBUTE_NAME_IDUSER="iduser";

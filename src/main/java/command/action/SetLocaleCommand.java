@@ -8,6 +8,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Set language. UA and US are available
+ */
 public class SetLocaleCommand implements Command {
 
   private static final String PARAM_NAME_LANGUAGE = "language";
@@ -17,6 +20,11 @@ public class SetLocaleCommand implements Command {
   private static final String LOCALE_US="us_US";
   private static final String LANGUAGE_UA="ua";
 
+  /**
+   * Executes command
+   * @param request
+   * @return Redirection to role's main page
+   */
   @Override
   public String execute(final HttpServletRequest request) {
     final HttpSession session = request.getSession();

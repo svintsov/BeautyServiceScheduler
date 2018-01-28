@@ -4,6 +4,9 @@ import bundle.ConfigurationManager;
 import entity.Role;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Special class for redirection to main role's pages
+ */
 public class Redirector {
 
   private static final String COMMAND_POSTFIX = "PAGE";

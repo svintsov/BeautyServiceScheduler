@@ -4,6 +4,9 @@ import bundle.ConfigurationManager;
 import command.Command;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Command redirects to registration form
+ */
 public class RegistrationFormCommand implements Command {
 
   @Override
