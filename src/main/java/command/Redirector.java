@@ -10,7 +10,7 @@ public class Redirector {
 
   public static String getMenu(final Role role, final HttpServletRequest request) {
 
-    if (role != null) {
+    if (role != null && !role.equals(Role.UNKNOWN)) {
       return CommandEnum.valueOf(role.toString().concat(COMMAND_POSTFIX)).getCurrentCommand()
           .execute(request);
     } else {

@@ -156,3 +156,71 @@
 2018-01-22 20:17:50.714 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
 2018-01-24 12:39:11.329 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
 2018-01-24 12:41:29.742 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 16:13:54.537 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 16:15:04.698 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 16:18:18.547 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 16:19:15.302 [http-nio-8081-exec-4] INFO   - Mail for review have been sent to:email1
+2018-01-26 16:59:46.198 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 17:01:42.683 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 17:08:20.356 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 17:09:12.041 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 17:11:28.182 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 17:15:05.929 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener
+2018-01-26 17:18:29.398 [RMI TCP Connection(3)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 17:16:47.511 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 17:17:10.421 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 17:17:28.020 [http-nio-8080-exec-7] INFO   - ua
+2018-01-27 17:22:27.617 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 17:22:37.462 [http-nio-8080-exec-5] INFO   - ua
+2018-01-27 17:31:07.147 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 17:31:20.112 [http-nio-8080-exec-7] INFO   - ua
+2018-01-27 17:36:47.265 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 17:36:58.242 [http-nio-8080-exec-6] INFO   - ua
+2018-01-27 17:37:41.468 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 17:37:49.156 [http-nio-8080-exec-5] INFO   - ua
+2018-01-27 17:53:46.623 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 17:53:57.271 [http-nio-8080-exec-6] INFO   - ua
+2018-01-27 18:07:56.751 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 18:08:06.166 [http-nio-8080-exec-6] INFO   - ua
+2018-01-27 19:59:51.924 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 20:00:21.144 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 20:06:56.168 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 20:07:02.540 [http-nio-8080-exec-5] INFO   - ua
+2018-01-27 20:10:30.257 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 20:10:38.984 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 20:11:09.412 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 20:12:01.130 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 20:12:21.672 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 20:13:50.031 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 20:14:25.194 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 20:14:52.037 [http-nio-8080-exec-5] INFO   - ua
+2018-01-27 20:15:06.544 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener
+2018-01-27 20:15:15.377 [http-nio-8080-exec-5] INFO   - ua
+2018-01-28 17:57:25.836 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:00:18.054 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:00:48.790 [RMI TCP Connection(3)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:04:36.528 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:08:57.184 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:10:51.522 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:11:58.863 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:15:06.938 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:15:25.183 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:16:32.649 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:17:07.975 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:22:35.868 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:23:47.628 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:27:05.418 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:31:48.409 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:33:07.897 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:34:36.842 [http-nio-8080-exec-3] INFO   - ua
+2018-01-28 18:39:33.321 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:42:05.223 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:42:48.422 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:43:25.463 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 18:59:23.717 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 19:00:23.205 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 19:01:25.148 [RMI TCP Connection(4)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 19:02:48.002 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 19:03:28.563 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 19:07:17.763 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
+2018-01-28 19:09:00.800 [RMI TCP Connection(2)-127.0.0.1] INFO   - first log from context listener
