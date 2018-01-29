@@ -19,7 +19,16 @@ In IDEA settings set the path to Tomcat up in Application Server menu.
 
 The next step is to set up the build configuration. Create new configuration and choose Tomcat app as default and with artifact. 
 
-After that the app will be deployed and war file created.
+After that the app will be deployed and war file created. 
+
+To run you could type in browser: 
+
+```
+http://localhost:8080/Beauty
+```
+
+And the start page will appear.
+
 
 #### Command Line
 
