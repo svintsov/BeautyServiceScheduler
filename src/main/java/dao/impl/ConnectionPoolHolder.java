@@ -22,6 +22,7 @@ public class ConnectionPoolHolder {
           ds.setMaxIdle(10);
           ds.setMaxOpenPreparedStatements(100);
           ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+          ds.setConnectionProperties("useUnicode=yes;characterEncoding=utf8");
           dataSource = ds;
         }
       }

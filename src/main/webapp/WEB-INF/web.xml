@@ -30,7 +30,7 @@
 
   <filter-mapping>
     <filter-name>EncodingFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/controller</url-pattern>
   </filter-mapping>
 
 </web-app>
