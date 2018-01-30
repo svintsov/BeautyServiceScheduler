@@ -29,6 +29,6 @@ public class MasterPageCommand implements Command {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return ConfigurationManager.getProperty("path.page.main");
+    return ConfigurationManager.getProperty("path.page.master");
   }
 }

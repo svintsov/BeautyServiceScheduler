@@ -19,7 +19,7 @@
 <div class="container_my">
     <fmt:setLocale value="${sessionScope.locale}"/>
     <fmt:bundle basename="texts">
-        <p><fmt:message key="text.master.page.heading"/></p>
+        <h2><fmt:message key="text.master.page.heading"/></h2>
         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
             <thead>
             <tr>

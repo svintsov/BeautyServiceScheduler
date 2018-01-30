@@ -1,6 +1,7 @@
 package dao;
 
 import dao.impl.JDBCDaoFactory;
+import java.sql.Connection;
 
 /**
  * Factory to create dao implementation
@@ -11,6 +12,7 @@ public abstract class DaoFactory {
 
   public abstract UserDao createUserDao();
   public abstract VisitDao createVisitDao();
+  public abstract Connection getConnection();
 
   public static DaoFactory getInstance(){
     if( daoFactory == null ){
