@@ -13,6 +13,11 @@ public class ReserveCommand implements command.Command {
   private static final String ATTRIBUTE_NAME_ROLE = "role";
   private static final String PARAM_NAME_ID_VISIT = "idvisit";
 
+  /**
+   * Executes command
+   * @param request
+   * @return Redirection to role's main page(main is Customer)
+   */
   @Override
   public String execute(final HttpServletRequest request) {
     final VisitService visitService = new VisitService();

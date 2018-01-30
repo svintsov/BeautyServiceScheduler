@@ -1,6 +1,5 @@
 package servlet;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -12,7 +11,7 @@ public class ContextListener implements ServletContextListener {
 
 
   /**
-   * just testing servlet context listener with some data
+   * Servlet that checks work of logger
    * @param servletContextEvent
    */
   @Override

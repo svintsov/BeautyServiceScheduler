@@ -1,5 +1,9 @@
 package dao.mapper;
 
+
+/**
+ * Customer mapper implementation
+ */
 public class CustomerMapper extends UserMapper {
   public CustomerMapper(){
     ID="cID";

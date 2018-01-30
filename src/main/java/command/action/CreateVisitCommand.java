@@ -12,6 +12,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import service.VisitService;
 
+/**
+ * Command for creating visit from admin role
+ */
 public class CreateVisitCommand implements Command {
 
   final String PARAM_NAME_SERVICE = "services_select";
@@ -22,6 +25,11 @@ public class CreateVisitCommand implements Command {
   final String PARAM_NAME_STATE = "states_select";
   private static final String ATTRIBUTE_NAME_ROLE="role";
 
+  /**
+   * Executes command
+   * @param request
+   * @return Redirection to role's main page
+   */
   @Override
   public String execute(final HttpServletRequest request) {
 
@@ -42,6 +50,11 @@ public class CreateVisitCommand implements Command {
     return Redirector.getMenu((Role)request.getSession().getAttribute(ATTRIBUTE_NAME_ROLE),request);
   }
 
+  /**
+   * Retrieves params from the user's input
+   * @param request
+   * @return map of inputs
+   */
   private Map<String,String> retrieveVisit(HttpServletRequest request){
 
     final Map<String, String> map = new HashMap<>();

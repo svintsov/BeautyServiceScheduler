@@ -1,5 +1,8 @@
 package dao.mapper;
 
+/**
+ * Mater mapper implementation
+ */
 public class MasterMapper extends UserMapper{
 
   public MasterMapper(){

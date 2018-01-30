@@ -10,12 +10,20 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import service.VisitService;
 
+/**
+ * Search for visits
+ */
 public class SearchVisitCommand implements Command {
 
   private static final String PARAM_NAME_SERVICE = "services_select";
   private static final String PARAM_NAME_DAY = "day";
   private static final String ATTRIBUTE_NAME_VISITS = "visits";
 
+  /**
+   * Executes command
+   * @param request
+   * @return Redirection to searching form with results
+   */
   @Override
   public String execute(final HttpServletRequest request) {
 

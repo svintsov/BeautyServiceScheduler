@@ -3,6 +3,9 @@ package command;
 import command.action.*;
 import command.page.*;
 
+/**
+ * Storage for all available commands
+ */
 public enum CommandEnum {
   LOGIN {
     {

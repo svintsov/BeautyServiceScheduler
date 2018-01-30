@@ -2,6 +2,10 @@ package dao;
 
 import dao.impl.JDBCDaoFactory;
 
+/**
+ * Factory to create dao implementation
+ * Singleton pattern
+ */
 public abstract class DaoFactory {
   private static DaoFactory daoFactory;
 

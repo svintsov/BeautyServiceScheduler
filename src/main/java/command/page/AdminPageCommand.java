@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import service.VisitService;
 
+/**
+ * Command redirects to admin page
+ */
 public class AdminPageCommand implements Command {
 
   private static final String ATTRIBUTE_NAME_VISITS="visits";

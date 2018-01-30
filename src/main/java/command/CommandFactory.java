@@ -3,6 +3,9 @@ package command;
 import bundle.MessageManager;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Factory for retrieving command from request
+ */
 public class CommandFactory {
 
   private static final String PARAM_NAME_COMMAND="command";

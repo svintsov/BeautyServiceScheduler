@@ -20,6 +20,11 @@ public class LoginCommand implements Command {
   private static final String ATTRIBUTE_NAME_ROLE = "role";
   private static final String ATTRIBUTE_NAME_ID_USER = "iduser";
 
+  /**
+   * Executes command
+   * @param request
+   * @return Redirection to role's main page or login page
+   */
   @Override
   public String execute(final HttpServletRequest request) {
 

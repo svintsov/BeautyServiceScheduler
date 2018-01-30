@@ -2,6 +2,9 @@ package entity;
 
 import java.util.List;
 
+/**
+ * Entity for all users of service. Stores info about login,pass,email and name
+ */
 public class User {
 
   private int id;

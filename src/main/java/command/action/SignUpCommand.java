@@ -7,14 +7,21 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import service.SignUpService;
 
+/**
+ * Registration command
+ */
 public class SignUpCommand implements Command {
-
 
   private static final String PARAM_NAME_LOGIN = "login";
   private static final String PARAM_NAME_PASSWORD = "password";
   private static final String PARAM_NAME_EMAIL = "email";
   private static final String PARAM_NAME_FULL_NAME = "full name";
 
+  /**
+   * Executes command
+   * @param request
+   * @return Redirection to role's main page
+   */
   @Override
   public String execute(final HttpServletRequest request) {
 

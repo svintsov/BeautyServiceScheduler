@@ -3,6 +3,9 @@ package filter;
 import javax.servlet.*;
 import java.io.IOException;
 
+/**
+ * Filter for encoding pages with UTF-8
+ */
 public class EncodingFilter implements Filter {
 
   public void destroy() {

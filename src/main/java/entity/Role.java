@@ -1,8 +1,8 @@
 package entity;
 
-import java.util.HashMap;
-import java.util.Map;
-
+/**
+ * Roles of service
+ */
 public enum Role {
   ADMINISTRATOR(1),CUSTOMER(3),MASTER(2),UNKNOWN(0);
 
@@ -16,14 +16,4 @@ public enum Role {
     return id;
   }
 
-  private static final Map<Integer,Role> map;
-  static {
-    map = new HashMap<Integer,Role>();
-    for (Role v : Role.values()) {
-      map.put(v.id, v);
-    }
-  }
-  public static Role findByKey(int i) {
-    return map.get(i);
-  }
 }

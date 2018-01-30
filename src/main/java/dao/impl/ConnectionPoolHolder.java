@@ -3,6 +3,9 @@ package dao.impl;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 
+/**
+ * Connection pool storage and settings
+ */
 public class ConnectionPoolHolder {
   private static volatile DataSource dataSource;
 
@@ -19,6 +22,7 @@ public class ConnectionPoolHolder {
           ds.setMaxIdle(10);
           ds.setMaxOpenPreparedStatements(100);
           ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+          ds.setConnectionProperties("useUnicode=yes;characterEncoding=utf8");
           dataSource = ds;
         }
       }

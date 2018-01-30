@@ -17,8 +17,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Almost all function with Visit entity contains here
+ */
 public class VisitService {
 
+  /**
+   * Reads all visits from db
+   * @return
+   * @throws SQLException
+   */
   public List<Visit> getAllVisits() throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     dao.getConnection().setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
@@ -29,6 +37,13 @@ public class VisitService {
     return result;
   }
 
+  /**
+   * Reads all visits for specific user's role and id
+   * @param idUser
+   * @param role
+   * @return
+   * @throws SQLException
+   */
   public List<Visit> getAllVisitsForUser(final int idUser, final Role role) throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     dao.getConnection().setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
@@ -43,6 +58,14 @@ public class VisitService {
     }
   }
 
+  /**
+   * Reads all visit for specific date
+   * @param type
+   * @param date
+   * @return
+   * @throws IOException
+   * @throws SQLException
+   */
   public List<Visit> getAllVisitsForDate(final String type, final String date) throws IOException, SQLException{
     if (isDateInPast(date)) throw new IOException();
 
@@ -59,6 +82,11 @@ public class VisitService {
         .collect(Collectors.toList());
   }
 
+  /**
+   * Deletes visit by id
+   * @param id
+   * @throws SQLException
+   */
   public void deleteByID(final int id) throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     final Connection connection = dao.getConnection();
@@ -74,6 +102,11 @@ public class VisitService {
     }
   }
 
+  /**
+   * Finishes visit by id
+   * @param id
+   * @throws SQLException
+   */
   public void finishVisitByID(final int id) throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     final Connection connection = dao.getConnection();
@@ -95,6 +128,12 @@ public class VisitService {
     }
   }
 
+  /**
+   * Write some message to visit review
+   * @param id
+   * @param message
+   * @throws SQLException
+   */
   public void writeReviewForVisit(final int id, final String message) throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     final Connection connection = dao.getConnection();
@@ -114,6 +153,12 @@ public class VisitService {
     }
   }
 
+  /**
+   * Reserves visit by some customer
+   * @param idVisit
+   * @param idUser
+   * @throws SQLException
+   */
   public void reserveVisitByID(final  int idVisit, final int idUser) throws SQLException{
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
     final Connection connection = dao.getConnection();
@@ -137,6 +182,12 @@ public class VisitService {
     }
   }
 
+  /**
+   * Creates visit from map of data
+   * @param visit
+   * @throws SQLException
+   * @throws IOException
+   */
   public void createVisit(final Map<String,String> visit) throws SQLException,IOException{
     if (isDateInPast(visit.get("day"))) throw new IOException();
     final VisitDao dao = DaoFactory.getInstance().createVisitDao();
@@ -157,6 +208,11 @@ public class VisitService {
 
   }
 
+  /**
+   * Checks if chosen date by user is in past
+   * @param date
+   * @return
+   */
   private boolean isDateInPast(final String date){
     try {
       if (new SimpleDateFormat("yyyy-mm-dd").parse(date).before(new Date())) {

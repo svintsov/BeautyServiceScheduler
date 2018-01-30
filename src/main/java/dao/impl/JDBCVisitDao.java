@@ -22,6 +22,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Implementation of Visit Dao
+ */
 public class JDBCVisitDao implements VisitDao {
 
   private UserMapper customerMapper;
@@ -36,6 +39,11 @@ public class JDBCVisitDao implements VisitDao {
     visitMapper = new VisitMapper();
   }
 
+  /**
+   * Reads all visits from db
+   * @return
+   * @throws SQLException
+   */
   @Override
   public List<Visit> findAll() throws SQLException {
     Map<Integer, Visit> visits = new HashMap<>();
@@ -66,6 +74,11 @@ public class JDBCVisitDao implements VisitDao {
     }
   }
 
+  /**
+   * Reads all visits where state is FREE and Customer is undefined
+   * @return
+   * @throws SQLException
+   */
   @Override
   public List<Visit> findAllWithoutCustomer() throws SQLException {
     Map<Integer, Visit> visits = new HashMap<>();
@@ -91,6 +104,10 @@ public class JDBCVisitDao implements VisitDao {
   }
 
 
+  /**
+   * Deletes all visits
+   * @throws SQLException
+   */
   @Override
   public void deleteAll() throws SQLException {
     try(Statement st = connection.createStatement()){
@@ -100,6 +117,11 @@ public class JDBCVisitDao implements VisitDao {
     }
   }
 
+  /**
+   * Delete visit with specific id
+   * @param id
+   * @throws SQLException
+   */
   @Override
   public void delete(final int id) throws SQLException {
     try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.DELETE.QUERY))){
@@ -108,6 +130,12 @@ public class JDBCVisitDao implements VisitDao {
     }
   }
 
+  /**
+   * Updates visit's state
+   * @param id
+   * @param state
+   * @throws SQLException
+   */
   @Override
   public void update(final int id, final State state) throws SQLException {
     try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.UPDATE_STATE.QUERY))){
@@ -117,6 +145,12 @@ public class JDBCVisitDao implements VisitDao {
     }
   }
 
+  /**
+   * Updates visit's customer
+   * @param id
+   * @param idCustomer
+   * @throws SQLException
+   */
   @Override
   public void update(final int id, final int idCustomer) throws SQLException {
     try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.UPDATE_CUSTOMER.QUERY))){
@@ -126,6 +160,12 @@ public class JDBCVisitDao implements VisitDao {
     }
   }
 
+  /**
+   * Updates visit's review
+   * @param id
+   * @param message
+   * @throws SQLException
+   */
   @Override
   public void update(final int id, final String message) throws SQLException {
     try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.UPDATE_REVIEW.QUERY))){
@@ -135,6 +175,11 @@ public class JDBCVisitDao implements VisitDao {
     }
   }
 
+  /**
+   * Creates visit from inputted bundle
+   * @param bundle
+   * @throws SQLException
+   */
   @Override
   public void create(final Map<String, String> bundle) throws SQLException {
     try(PreparedStatement st = connection.prepareStatement(SQLQueryManager.getProperty(SQLVisit.INSERT.QUERY))){
@@ -155,11 +200,22 @@ public class JDBCVisitDao implements VisitDao {
     }
   }
 
+  /**
+   * Creates visit with Visit entity
+   * @param model
+   * @throws SQLException
+   */
   @Override
   public void create(final Visit model) throws SQLException {
 
   }
 
+  /**
+   * Read visit with specific id
+   * @param id
+   * @return
+   * @throws SQLException
+   */
   @Override
   public Visit read(final Integer id) throws SQLException {
     Visit result = new Visit();
@@ -176,16 +232,29 @@ public class JDBCVisitDao implements VisitDao {
     return result;
   }
 
+  /**
+   * Updates visit with Visit entity
+   * @param model
+   * @throws SQLException
+   */
   @Override
   public void update(final Visit model) throws SQLException {
 
   }
 
+  /**
+   * Deletes visit with ready model
+   * @param model
+   * @throws SQLException
+   */
   @Override
   public void delete(final Visit model) throws SQLException {
 
   }
 
+  /**
+   * Closes db connection
+   */
   @Override
   public void close(){
     try {
@@ -200,6 +269,9 @@ public class JDBCVisitDao implements VisitDao {
     return this.connection;
   }
 
+  /**
+   * SQL scripts
+   */
   enum SQLVisit {
     READ("visit.read.id"),
     READ_ALL("visit.read.all"),

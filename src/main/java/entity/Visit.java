@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Main entity of service. Visit holds info about customer,master,date and additional info
+ */
 public class Visit {
 
   private int id;
